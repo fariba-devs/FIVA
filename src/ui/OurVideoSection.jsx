@@ -36,11 +36,7 @@ const OurVideoSection = () => {
         {/* لایه Parallax تصویر */}
         <div
           ref={parallaxRef}
-          className="absolute top-0 left-0 w-full h-[678px] bg-center bg-cover pointer-events-none will-change-transform"
-          style={{
-            backgroundImage:
-              'url("https://demo.templatesjungle.com/vaso/images/video-image.jpg")',
-          }}
+          className="bg-[url('/images/video-image.jpg')] absolute top-0 left-0 w-full h-[678px] bg-center bg-cover pointer-events-none will-change-transform"
         ></div>
 
         {/* بخش ویدیو پلیر */}
