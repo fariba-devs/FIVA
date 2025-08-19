@@ -46,14 +46,14 @@ export default function HeroSlider() {
                 <div
                   className={`flex ${slide.align === "right" ? "justify-end" : "justify-start"}`}
                 >
-                  <div className="w-2/4 px-20 py-12 ">
+                  <div className="sm:w-3/4 md:w-2/3 lg:w-1/2 px-6 md:px-20 py-12">
                     <h2 className="font-family-italiana text-7xl mb-4">
                       {slide.title}
                     </h2>
                     <p className="font-light text-xl tracking-normal text-light-dark mb-6">
                       {slide.desc}
                     </p>
-                    <BaseLink name="Shop Now" />
+                    <BaseLink name="Shop Now" className="px-0 py-3" />
                   </div>
                 </div>
               </div>
