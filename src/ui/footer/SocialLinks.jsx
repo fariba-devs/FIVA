@@ -11,7 +11,7 @@ const SocialLinks = () => {
 
   return (
     <div>
-      <ul className="flex space-x-3 md:space-x-4">
+      <ul className="flex space-x-2 md:space-x-3">
         {socialLinks.map((link, idx) => {
           const Icon = link.icon;
           return (

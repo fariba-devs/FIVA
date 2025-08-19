@@ -1,14 +1,10 @@
 import BaseLink from "./BaseLink.jsx";
 
-const ProductCard = ({ title, imageUrl, isVisible, className = "" }) => {
+const ProductCard = ({ title, imageUrl, className = "" }) => {
   return (
     <div className={`relative overflow-hidden h-full ${className}`}>
       <div
-        className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out ${
-          isVisible
-            ? "transform translate-x-0 "
-            : "transform -translate-x-full "
-        }`}
+        className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out `}
         style={{
           backgroundImage: `url(${imageUrl})`,
         }}

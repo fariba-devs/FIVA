@@ -14,7 +14,7 @@ const AppLayout = () => {
       </main>
 
       {/* Footer */}
-      <Footer className="bg-gray-900" />
+      <Footer />
     </div>
   );
 };

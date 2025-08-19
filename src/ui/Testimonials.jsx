@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-gray-50 to-white">
+    <section className="relative py-45">
       <div className="container mx-auto px-4">
         <div className="flex justify-center">
           <div className="w-full max-w-4xl">
@@ -58,9 +58,9 @@ const TestimonialsSection = () => {
                   : "opacity-0 translate-y-10"
               }`}
             >
-              <h3 className="text-3xl md:text-4xl font-light text-gray-800 mb-2">
-                What our customers say
-              </h3>
+              <h2 className="text-4xl md:text-5xl font-family-italiana text-[2.625rem]">
+                What Our Customers Says
+              </h2>
             </div>
 
             {/* Testimonials Slider */}

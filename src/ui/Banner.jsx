@@ -1,34 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 import ProductCard from "./BannerCart.jsx";
 
 const MasonryProductLayout = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      {
-        threshold: 0.1, // انیمیشن وقتی 10% از المان نمایان شود شروع می‌شود
-        rootMargin: "0px 0px -50px 0px", // انیمیشن کمی دیرتر شروع می‌شود
-      },
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   const products = [
     {
       id: 1,
@@ -60,19 +34,21 @@ const MasonryProductLayout = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="h-[140vh] xl:h-screen">
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2 xl:grid-rows-2 h-full">
+    <section className="h-[140vh] xl:h-screen">
+      <div className="grid grid-cols-1 xl:grid-cols-2 xl:grid-rows-2 gap-4 h-full">
         {products.map((product, idx) => {
-          // تعیین ارتفاع‌ها و row-span فقط برای حالت Large
-          let className = "";
-          if (idx === 0) className += " xl:row-span-2"; // کارت اول ستون سمت چپ
+          const extraClass = idx === 0 ? "xl:row-span-2" : "";
           return (
-            <ProductCard
+            <motion.div
               key={product.id}
-              {...product}
-              className={className}
-              isVisible={isVisible}
-            />
+              initial={{ opacity: 0, scaleX: 0, originX: 0 }}
+              whileInView={{ opacity: 1, scaleX: 1, originX: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              viewport={{ once: true, amount: 0.2 }}
+              className={`${extraClass}`}
+            >
+              <ProductCard {...product} />
+            </motion.div>
           );
         })}
       </div>

@@ -52,9 +52,9 @@ const MainNav = () => {
       }`}
     >
       {/* منوی دسکتاپ */}
-      <div className="hidden md:flex items-center justify-between h-full px-6 max-w-8xl mx-auto">
+      <div className="hidden lg:flex items-center justify-between h-full px-6 max-w-8xl mx-auto">
         {/* منوی سمت چپ (About, Shop, Pages) */}
-        <ul className="flex items-center space-x-12 text-dark font-medium text-lg ">
+        <ul className="flex items-center lg:space-x-18 xl:space-x-28 text-dark font-medium text-lg ">
           {menuItems.slice(0, 3).map((item) => (
             <NavItem
               key={item.to}
@@ -66,12 +66,12 @@ const MainNav = () => {
         </ul>
 
         {/* لوگو در وسط */}
-        <div className="flex-shrink-0">
+        <div className="flex-shrink-0 lg:mx-5 xl:mx-10 ">
           <Logo />
         </div>
 
         {/* آیتم‌های سمت راست (Search, Account, Cart) */}
-        <ul className="flex items-center space-x-8 text-dark font-medium text-lg">
+        <ul className="flex items-center lg:space-x-18 xl:space-x-28 text-dark font-medium text-lg ">
           <li>
             {/* باکس سرچ داخل li */}
             <div className="relative flex items-center w-fit justify-center transition-all duration-200">
@@ -80,7 +80,7 @@ const MainNav = () => {
                   ref={searchRef}
                   type="text"
                   placeholder="Search Here..."
-                  className="absolute right-full text-md px-2 py-1 focus:outline-none transition-all duration-500 border-b border-accent"
+                  className="absolute right-full text-md px-1 py-0.5 focus:outline-none transition-all duration-500 border-b border-black w-40"
                   autoFocus
                 />
               )}
@@ -106,16 +106,19 @@ const MainNav = () => {
       </div>
 
       {/* دکمه منوی موبایل */}
-      <button
-        className="md:hidden absolute top-1/2 right-10 transform -translate-y-1/2 text-dark font-semibold text-3xlg"
-        onClick={() => setIsMobileMenuOpen((prev) => !prev)}
-      >
-        Menu
-      </button>
+      <div className="lg:hidden absolute w-full px-10 md:px-20 py-5 text-dark font-semibold flex items-center justify-between">
+        <Logo />
+        <button
+          className="text-xl"
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+        >
+          Menu
+        </button>
+      </div>
 
       {/* منوی موبایل */}
       <div
-        className={`fixed flex flex-col top-0 right-0 h-full w-96 bg-white shadow-md md:hidden transform transition-transform duration-300 ease-in-out z-60 ${
+        className={`fixed flex flex-col top-0 right-0 h-full w-96 bg-white shadow-md lg:hidden transform transition-transform duration-300 ease-in-out z-60 ${
           isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -143,7 +146,7 @@ const MainNav = () => {
       {/* Overlay برای بستن منوی موبایل */}
       {isMobileMenuOpen && (
         <div
-          className="fixed inset-0 bg-black/50  md:hidden z-50"
+          className="fixed inset-0 bg-black/50  lg:hidden z-50"
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}

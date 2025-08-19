@@ -18,9 +18,8 @@ const contactInfo = [
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 px-6 sm:px-8 lg:px-16 py-12 sm:py-16">
+    <footer className="bg-gray-300 px-6 sm:px-8 lg:px-16 pt-16 pb-5 sm:pt-20">
       <div className="max-w-7xl mx-auto">
-        {/* Grid for all sections */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <FooterText
             title={<Logo />}
@@ -44,8 +43,11 @@ const Footer = () => {
         <hr className="border-gray-500 mt-8" />
 
         {/* Footer Bottom */}
-        <div className="text-center text-gray-500 text-sm mt-4 sm:mt-6">
-          &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+        <div className="text-light-dark font-light text-lg mt-4 sm:mt-6">
+          &copy; {new Date().getFullYear()} Your Company.
+          <a href="#" className="font-semibold">
+            All rights reserved.
+          </a>
         </div>
       </div>
     </footer>
