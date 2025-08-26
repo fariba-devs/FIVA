@@ -45,7 +45,7 @@ const FAQSection = () => {
   }, []);
 
   return (
-    <section className=" py-50 ">
+    <section aria-label="FAQSection" className=" py-50 ">
       <div className="container max-w-4xl mx-auto px-4">
         <h3 className="text-4xl md:text-5xl text-center mb-8 font-family-italiana">
           Some FAQs

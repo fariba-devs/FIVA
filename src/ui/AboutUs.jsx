@@ -1,6 +1,6 @@
 const AboutUs = () => {
   return (
-    <section className="py-45">
+    <section aria-label="AboutUs" className="py-45">
       <div className="container mx-auto px-4 text-left max-w-full space-y-8 sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl">
         <p className="text-gray-600 font-medium ">ABOUT US</p>
         <h2 className="leading-tight text-3xl md:text-5xl font-family-italiana text-[2.625rem]">

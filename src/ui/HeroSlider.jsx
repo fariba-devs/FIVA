@@ -28,7 +28,7 @@ const slides = [
 
 export default function HeroSlider() {
   return (
-    <section className="relative overflow-hidden ">
+    <section aria-label="HeroSlider" className="relative overflow-hidden ">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}

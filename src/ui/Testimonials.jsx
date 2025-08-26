@@ -46,7 +46,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section className="relative py-45">
+    <section aria-label="TestimonialsSection" className="relative py-45">
       <div className="container mx-auto px-4">
         <div className="flex justify-center">
           <div className="w-full max-w-4xl">

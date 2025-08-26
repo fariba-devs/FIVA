@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import ArrowButton from "./ArrowButton.jsx";
 import { X } from "lucide-react";
+import TestimonialsSection from "./Testimonials.jsx";
 
 const OurVideoSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,7 +33,10 @@ const OurVideoSection = () => {
 
   return (
     <>
-      <section className="relative h-[678px] overflow-hidden">
+      <section
+        aria-label="OurVideoSection"
+        className="relative h-[678px] overflow-hidden"
+      >
         {/* لایه Parallax تصویر */}
         <div
           ref={parallaxRef}

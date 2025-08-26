@@ -4,7 +4,7 @@ import ProductCarousel from "./ProductCarousel.jsx";
 
 const Products = () => {
   return (
-    <section className=" ">
+    <section aria-label="Products" className=" ">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between max-w-9xl mx-auto px-4 md:px-20 py-5 gap-2">
         <div>
           <h2 className="font-family-italiana font-medium text-4xl md:text-5xl">
