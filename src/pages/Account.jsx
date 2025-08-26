@@ -1,5 +1,15 @@
+import HeroContent from "../ui/HeroContent.jsx";
+import LoginTabs from "../ui/LoginTabs.jsx";
+import NewsletterSection from "../ui/NewsletterSection.jsx";
+
 const Account = () => {
-  return <div>Account</div>;
+  return (
+    <>
+      <HeroContent name="Account" />
+      <LoginTabs />
+      <NewsletterSection />
+    </>
+  );
 };
 
 export default Account;

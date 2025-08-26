@@ -44,9 +44,14 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className="text-light-dark font-light text-lg mt-4 sm:mt-6">
-          &copy; {new Date().getFullYear()} Your Company.
-          <a href="#" className="font-semibold">
-            All rights reserved.
+          &copy; {new Date().getFullYear()} VASO.
+          <a
+            href="https://github.com/Fariba-shamseh"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold ml-2"
+          >
+            Designed by Fariba.
           </a>
         </div>
       </div>

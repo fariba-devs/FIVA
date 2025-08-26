@@ -1,0 +1,23 @@
+import { Link } from "react-router-dom";
+import HeroSection from "./HeroSection.jsx";
+
+const HeroContent = ({ name }) => {
+  return (
+    <HeroSection className="h-128 pt-55">
+      <h1 className="text-7xl md:text-8xl font-family-italiana mb-7">{name}</h1>
+      <div className="text-lg">
+        <span className="mr-2">
+          <Link
+            to="/shop"
+            className="inline-block text-lg hover:text-accent transition"
+          >
+            <span className="relative decoration-2">Home &gt;</span>
+          </Link>
+        </span>
+        <span>{name}</span>
+      </div>
+    </HeroSection>
+  );
+};
+
+export default HeroContent;

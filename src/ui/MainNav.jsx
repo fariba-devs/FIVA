@@ -1,11 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import Logo from "./Logo.jsx";
 import NavItem from "./NavItem.jsx";
+import NavItemWithSubmenu from "./NavItemWithSubmenu.jsx";
 
 const menuItems = [
   { to: "/about", label: "About" },
   { to: "/shop", label: "Shop" },
-  { to: "/pages", label: "Pages" },
+  {
+    to: "/pages", // Pages فقط زیرمنو دارد، خودش صفحه ندارد
+    label: "Pages",
+    hasSubmenu: true,
+    submenuItems: [
+      { to: "/pages/contact", label: "Contact" },
+      { to: "/pages/blog", label: "Blog" },
+    ],
+  },
   { to: "/account", label: "Account" },
   { to: "/cart", label: "Cart" },
 ];
@@ -47,7 +56,7 @@ const MainNav = () => {
 
   return (
     <nav
-      className={`top-0 z-50 h-20 w-full ${
+      className={`top-0 z-50 h-20 w-full select-none ${
         isScrolled ? "sticky bg-white" : "fixed bg-transparent"
       }`}
     >
@@ -55,7 +64,7 @@ const MainNav = () => {
       <div className="hidden lg:flex items-center justify-between h-full px-6 max-w-8xl mx-auto">
         {/* منوی سمت چپ (About, Shop, Pages) */}
         <ul className="flex items-center lg:space-x-18 xl:space-x-28 text-dark font-medium text-lg ">
-          {menuItems.slice(0, 3).map((item) => (
+          {menuItems.slice(0, 2).map((item) => (
             <NavItem
               key={item.to}
               to={item.to}
@@ -63,6 +72,8 @@ const MainNav = () => {
               className="flex items-center w-fit justify-center"
             />
           ))}
+          {/* آیتم Pages با زیرمنو */}
+          <NavItemWithSubmenu item={menuItems[2]} />
         </ul>
 
         {/* لوگو در وسط */}
@@ -137,9 +148,13 @@ const MainNav = () => {
         </div>
 
         <ul className="px-4 space-y-6">
-          {menuItems.map((item) => (
-            <NavItem key={item.to} to={item.to} label={item.label} />
-          ))}
+          {menuItems.map((item) =>
+            item.hasSubmenu ? (
+              <NavItemWithSubmenu key={item.to} item={item} mobile={true} />
+            ) : (
+              <NavItem key={item.to} to={item.to} label={item.label} />
+            ),
+          )}
         </ul>
       </div>
 

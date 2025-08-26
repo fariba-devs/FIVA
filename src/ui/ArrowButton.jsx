@@ -7,9 +7,13 @@ import {
   ChevronUp,
   ChevronDown,
   Play,
+  ShoppingCart,
+  Award,
+  Tag,
+  ShieldPlus,
 } from "lucide-react";
 
-// Mapping آیکن‌ها بر اساس type و direction
+// ✅ همه کلیدها lowercase
 const ICON_MAP = {
   arrow: { left: ArrowLeft, right: ArrowRight },
   chevron: {
@@ -18,48 +22,61 @@ const ICON_MAP = {
     up: ChevronUp,
     down: ChevronDown,
   },
-  chevronUD: { up: ChevronUp, down: ChevronDown },
+  chevronupdown: { up: ChevronUp, down: ChevronDown },
   play: { left: Play, right: Play },
+  shoppingcart: { default: ShoppingCart },
+  award: { default: Award },
+  tag: { default: Tag },
+  shieldplus: { default: ShieldPlus },
 };
 
-// Mapping سایز آیکن بر اساس variant
 const ICON_SIZE = {
-  default: 41,
+  default: 60,
   filled: 30,
-  chevronUpDown: 30,
-  minimal: 40,
+  chevronupdown: 30,
+  minimal: 50,
 };
 
-// Mapping کلاس رنگ و hover
+const SPECIAL_ICONS = ["shoppingcart", "award", "tag", "shieldplus"];
+
 const ICON_COLOR = {
   default: "text-black group-hover:text-white group-hover:scale-110",
   filled: "text-black group-hover:text-accent",
-  chevronUpDown: "text-black group-hover:text-accent",
+  chevronupdown: "text-black group-hover:text-accent",
   minimal: "text-gray-600",
 };
 
-// Mapping کلاس button بر اساس variant
 const BUTTON_VARIANT = {
   default: "w-20 h-20 bg-white border border-black hover:bg-black",
   minimal: "p-2",
   filled: "relative cursor-pointer w-60 h-60",
-  chevronUpDown: "relative cursor-pointer",
+  chevronupdown: "relative cursor-pointer",
 };
 
+// ✅ ArrowButton کاملاً یکدست
 const ArrowButton = ({
-  direction = "right", // "left" | "right" | "up" | "down"
-  variant = "default", // "default" | "minimal" | "filled" | "chevronUpDown"
-  iconType = "arrow", // "arrow" | "chevron" | "play"
+  direction = "right",
+  variant = "default",
+  iconType = "arrow",
   onClick,
   disabled = false,
   backgroundImage,
   className = "",
-  ...restProps // data-* و سایر props
+  ...restProps
 }) => {
-  const Icon = ICON_MAP[iconType.toLowerCase()]?.[direction] || ArrowRight;
-  const size = ICON_SIZE[variant] || 40;
-  const colorClass = ICON_COLOR[variant] || "text-gray-600";
-  const variantClass = BUTTON_VARIANT[variant] || "";
+  const type = iconType.toLowerCase();
+  const Icon =
+    ICON_MAP[type]?.[direction] || ICON_MAP[type]?.default || ArrowRight;
+
+  const size = ICON_SIZE[variant.toLowerCase()] || 40;
+  const isSpecial = SPECIAL_ICONS.includes(type);
+
+  const colorClass = isSpecial
+    ? "text-primary"
+    : ICON_COLOR[variant.toLowerCase()] || "text-gray-600";
+  const variantClass = isSpecial
+    ? "w-20 h-20 border border-gray-500"
+    : BUTTON_VARIANT[variant.toLowerCase()] || "";
 
   return (
     <button

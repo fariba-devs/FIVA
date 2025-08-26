@@ -8,7 +8,7 @@ import Banner from "../ui/Banner.jsx";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <HeroSlider />
       <AboutUs />
       <Products />
@@ -16,7 +16,7 @@ const Home = () => {
       <OurVideoSection />
       <FAQSection />
       <Banner />
-    </div>
+    </>
   );
 };
 

@@ -3,10 +3,10 @@ import ArrowButton from "./ArrowButton.jsx";
 
 const FAQItem = ({ faq, isOpen, onToggle }) => {
   return (
-    <div className="">
+    <div className="py-2">
       <h4>
         <button
-          className="w-full flex justify-between items-center p-4 text-left font-medium text-gray-800 focus:outline-none"
+          className="w-full flex justify-between items-center py-2 font-family-italiana text-left text-3xl md:text-3xl font-medium text-gray-800 focus:outline-none"
           onClick={onToggle}
         >
           {faq.question}
@@ -32,7 +32,9 @@ const FAQItem = ({ faq, isOpen, onToggle }) => {
           isOpen ? "max-h-40" : "max-h-0"
         }`}
       >
-        <div className="px-4 pb-4 text-gray-600">{faq.answer}</div>
+        <div className="pb-4 text-lg font-light text-light-dark">
+          {faq.answer}
+        </div>
       </div>
     </div>
   );

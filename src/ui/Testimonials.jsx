@@ -82,12 +82,12 @@ const TestimonialsSection = () => {
                       className="w-full flex-shrink-0 px-4"
                     >
                       <div className="text-center max-w-3xl mx-auto">
-                        <blockquote className="text-xl md:text-2xl lg:text-3xl font-light text-gray-700 leading-relaxed mb-8 italic">
+                        <blockquote className="text-center mx-auto text-2xl md:text-3xl lg:text-3xl font-light text-gray-700 leading-relaxed mb-8">
                           "{testimonial.quote}"
                         </blockquote>
                         <div className="flex flex-col items-center">
                           <div className="w-12 h-px bg-gray-300 mb-4"></div>
-                          <div className="font-bold text-gray-800 uppercase tracking-wide">
+                          <div className="font-bold text-gray-800 uppercase tracking-wide text-lg">
                             {testimonial.author}
                           </div>
                         </div>

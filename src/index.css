@@ -68,5 +68,10 @@ animation: spin 40s linear infinite;
 /*----------------------------------------------*/
 @theme {
     --max-width-8xl: 82rem;    /* برای max-w-8xl */
+    --max-width-9xl: 90rem;    /* 1440px */
 }
 
+@theme {
+    --size-128: 32rem; /* h-128:معادل 512) مثلا px) */
+    --size-112: 28rem;
+}

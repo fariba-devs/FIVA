@@ -3,7 +3,7 @@ const AboutUs = () => {
     <section className="py-45">
       <div className="container mx-auto px-4 text-left max-w-full space-y-8 sm:max-w-lg md:max-w-xl lg:max-w-3xl xl:max-w-5xl">
         <p className="text-gray-600 font-medium ">ABOUT US</p>
-        <h2 className="text-4xl md:text-5xl font-family-italiana text-[2.625rem]">
+        <h2 className="leading-tight text-3xl md:text-5xl font-family-italiana text-[2.625rem]">
           Vaso Is The Only Best Online Store For Varieties Of Collection Of
           Clean And Beautiful Vases.
         </h2>
