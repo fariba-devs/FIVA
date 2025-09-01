@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import ArrowButton from "./ArrowButton.jsx";
 import { X } from "lucide-react";
-import TestimonialsSection from "./Testimonials.jsx";
 
 const OurVideoSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,8 +50,6 @@ const OurVideoSection = () => {
             variant="filled"
             iconType="Play"
             className="w-48 h-48 absoluteStrokeWidth"
-            data-bs-target="#myModal"
-            data-src="https://www.youtube.com/embed/W_tIumKa8VY"
           />
         </div>
       </section>
@@ -75,7 +72,6 @@ const OurVideoSection = () => {
               src="https://www.youtube.com/embed/W_tIumKa8VY?autoplay=1"
               title="Video"
               className="w-full h-full"
-              frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />

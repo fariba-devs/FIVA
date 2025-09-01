@@ -36,7 +36,9 @@ const Services = () => {
               <div className="inline-flex p-4 border border-gray-300 rounded-full mb-4 justify-center items-center">
                 {service.icon}
               </div>
-              <h4 className="text-xl font-semibold mb-2">{service.title}</h4>
+              <h4 className="text-3xl mb-2 font-italiana whitespace-nowrap">
+                {service.title}
+              </h4>
               <p className="text-gray-600">{service.description}</p>
             </div>
           ))}

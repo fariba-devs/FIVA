@@ -4,7 +4,7 @@ import HeroSection from "./HeroSection.jsx";
 const HeroContent = ({ name }) => {
   return (
     <HeroSection className="h-128 pt-55">
-      <h1 className="text-7xl md:text-8xl font-family-italiana mb-7">{name}</h1>
+      <h1 className="text-7xl md:text-8xl font-italiana mb-7">{name}</h1>
       <div className="text-lg">
         <span className="mr-2">
           <Link

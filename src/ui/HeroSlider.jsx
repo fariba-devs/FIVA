@@ -1,4 +1,3 @@
-// components/HeroSlider.jsx
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
@@ -47,7 +46,7 @@ export default function HeroSlider() {
                   className={`flex ${slide.align === "right" ? "justify-end" : "justify-start"}`}
                 >
                   <div className="sm:w-3/4 md:w-2/3 lg:w-1/2 px-6 md:px-20 py-12">
-                    <h2 className="font-family-italiana text-7xl mb-4">
+                    <h2 className="font-italiana text-7xl mb-4">
                       {slide.title}
                     </h2>
                     <p className="font-light text-xl tracking-normal text-light-dark mb-6">

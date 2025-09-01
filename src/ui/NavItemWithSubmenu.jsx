@@ -30,7 +30,7 @@ const NavItemWithSubmenu = ({ item, className = "", mobile = false }) => {
       {/* آیتم اصلی */}
       <span
         onClick={handleToggle}
-        className="px-4 py-2 cursor-pointer flex items-center justify-between hover:text-accent select-none"
+        className="py-2 cursor-pointer flex items-center justify-start hover:text-accent select-none"
       >
         {item.label}
         <span

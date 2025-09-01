@@ -17,28 +17,33 @@ const infoData = [
 ];
 const OurStoreSection = () => {
   return (
-    <motion.section
-      className="px-8 pt-16 pb-44"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 4 }}
-    >
+    <section className="px-8 pt-16 pb-44">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Image */}
-          <div className="mb-5">
-            <div>
-              <img
-                src="/images/post-item3.jpg"
-                alt="our-store"
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 2, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }} // once=true یعنی فقط یکبار، amount=0.2 یعنی وقتی ۲۰٪ سکشن اومد تو ویو
+            className="mb-5"
+          >
+            <img
+              src="/images/post-item3.jpg"
+              alt="our-store"
+              className="w-full h-auto"
+            />
+          </motion.div>
 
           {/* Locations */}
-          <div className="pb-6">
-            <h3 className="text-5xl mb-2 font-family-italiana capitalize">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 2, delay: 0.5 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="pb-6"
+          >
+            <h3 className="text-5xl mb-2 font-italiana capitalize">
               Our stores
             </h3>
             <p className="text-gray-600 mb-6">
@@ -50,10 +55,10 @@ const OurStoreSection = () => {
                 <LocationCard key={index} {...item} />
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 

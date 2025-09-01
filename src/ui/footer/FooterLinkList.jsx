@@ -3,7 +3,7 @@ import NavItem from "../NavItem.jsx";
 const FooterLinkList = ({ title, menuItems }) => {
   return (
     <div className="pb-6">
-      <h4 className="text-2xl font-medium font-family-italiana text-light-dark pb-4">
+      <h4 className="text-2xl font-medium font-italiana text-light-dark pb-4">
         {title}
       </h4>
       <ul className=" space-y-3 text-lg">

@@ -6,7 +6,7 @@ const FAQItem = ({ faq, isOpen, onToggle }) => {
     <div className="py-2">
       <h4>
         <button
-          className="w-full flex justify-between items-center py-2 font-family-italiana text-left text-3xl md:text-3xl font-medium text-gray-800 focus:outline-none"
+          className="w-full flex justify-between items-center py-2 text-left text-3xl md:text-3xl font-italiana font-medium text-gray-800 focus:outline-none"
           onClick={onToggle}
         >
           {faq.question}

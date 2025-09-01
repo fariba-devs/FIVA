@@ -21,7 +21,7 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Info */}
           <div className="pb-6">
-            <h3 className="text-5xl mb-2 font-family-italiana capitalize">
+            <h3 className="text-5xl mb-2 font-italiana capitalize">
               Contact info
             </h3>
             <p className="text-gray-600 mb-6">
@@ -38,7 +38,7 @@ const ContactSection = () => {
 
           {/* Inquiry Form */}
           <div className="inquiry-item">
-            <h3 className="text-5xl mb-2 font-family-italiana capitalize">
+            <h3 className="text-5xl mb-2 font-italiana capitalize">
               Any questions?
             </h3>
             <p className="text-gray-600 mb-15">

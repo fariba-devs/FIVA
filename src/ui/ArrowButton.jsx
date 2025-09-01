@@ -13,7 +13,6 @@ import {
   ShieldPlus,
 } from "lucide-react";
 
-// ✅ همه کلیدها lowercase
 const ICON_MAP = {
   arrow: { left: ArrowLeft, right: ArrowRight },
   chevron: {
@@ -37,23 +36,22 @@ const ICON_SIZE = {
   minimal: 50,
 };
 
-const SPECIAL_ICONS = ["shoppingcart", "award", "tag", "shieldplus"];
-
 const ICON_COLOR = {
   default: "text-black group-hover:text-white group-hover:scale-110",
+  minimal: "text-black",
   filled: "text-black group-hover:text-accent",
   chevronupdown: "text-black group-hover:text-accent",
-  minimal: "text-gray-600",
 };
 
 const BUTTON_VARIANT = {
   default: "w-20 h-20 bg-white border border-black hover:bg-black",
-  minimal: "p-2",
+  minimal: "p-2 hover:cursor-pointer duration-300", //حالت disable هم داره
   filled: "relative cursor-pointer w-60 h-60",
   chevronupdown: "relative cursor-pointer",
 };
 
-// ✅ ArrowButton کاملاً یکدست
+const SPECIAL_ICONS = ["shoppingcart", "award", "tag", "shieldplus"];
+
 const ArrowButton = ({
   direction = "right",
   variant = "default",
@@ -65,22 +63,29 @@ const ArrowButton = ({
   ...restProps
 }) => {
   const type = iconType.toLowerCase();
+
   const Icon =
     ICON_MAP[type]?.[direction] || ICON_MAP[type]?.default || ArrowRight;
 
   const size = ICON_SIZE[variant.toLowerCase()] || 40;
+
   const isSpecial = SPECIAL_ICONS.includes(type);
 
-  const colorClass = isSpecial
-    ? "text-primary"
-    : ICON_COLOR[variant.toLowerCase()] || "text-gray-600";
+  const colorClass = disabled //minimal disabled داره
+    ? "text-gray-600"
+    : isSpecial
+      ? "text-primary"
+      : ICON_COLOR[variant.toLowerCase()] || "text-gray-600";
+
   const variantClass = isSpecial
     ? "w-20 h-20 border border-gray-500"
     : BUTTON_VARIANT[variant.toLowerCase()] || "";
 
+  // const disabledClass = disabled ? "opacity-60" : "hover:bg-gray-200";
+
   return (
     <button
-      className={`group flex items-center justify-center rounded-full transition-all duration-300 ${variantClass} ${className}`}
+      className={`group flex items-center justify-center rounded-full transition-all duration-300  ${variantClass} ${className}`}
       onClick={onClick}
       disabled={disabled}
       {...restProps}

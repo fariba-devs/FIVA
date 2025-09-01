@@ -67,10 +67,13 @@ const products = [
     link: "single-product.html",
   },
 ];
-const ProductCarousel = () => {
+const ProductCarousel = ({ swiperRef }) => {
   return (
     <div className="w-full overflow-hidden">
       <Swiper
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper; // 📌 ذخیره رفرنس برای کنترل
+        }}
         spaceBetween={18}
         slidesPerView={2}
         breakpoints={{

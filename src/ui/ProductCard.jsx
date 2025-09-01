@@ -11,7 +11,7 @@ const ProductCard = ({ product }) => {
         />
 
         <div className="absolute inset-0 flex items-end pb-3 justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity">
-          <BaseLink name={"Add to Cart"} />
+          <BaseLink name={"Add to Cart"} className="pb-5" />
         </div>
       </div>
       <div className="text-center pt-3 pb-2">
