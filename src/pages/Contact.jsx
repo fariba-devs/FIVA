@@ -1,6 +1,6 @@
-import HeroContent from "../ui/HeroContent.jsx";
+import HeroContent from "../features/hero/HeroContent.jsx";
 import NewsletterSection from "../ui/NewsletterSection.jsx";
-import ContactSection from "../ui/ContactSection.jsx";
+import ContactSection from "../features/contact/ContactSection.jsx";
 import OurStoreSection from "../ui/OurStoreSection.jsx";
 
 const Contact = () => {

@@ -1,9 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import ProductCard from "./ProductCard.jsx";
+import ProductCard from "../../ui/ProductCard.jsx";
 
 const products = [
   {
-    id: 1,
     img: "images/product-item1.jpg",
     alt: "product-item",
     title: "Matt Black",
@@ -11,7 +10,6 @@ const products = [
     link: "single-product.html",
   },
   {
-    id: 2,
     img: "images/product-item2.jpg",
     alt: "product-item",
     title: "Oldie Off-White",
@@ -19,7 +17,6 @@ const products = [
     link: "single-product.html",
   },
   {
-    id: 3,
     img: "images/product-item3.jpg",
     alt: "product-item",
     title: "Vintage With Handle",
@@ -27,7 +24,6 @@ const products = [
     link: "single-product.html",
   },
   {
-    id: 4,
     img: "images/product-item4.jpg",
     alt: "product-item",
     title: "Opposite Pattern",
@@ -35,7 +31,6 @@ const products = [
     link: "single-product.html",
   },
   {
-    id: 5,
     img: "images/product-item5.jpg",
     alt: "product-item",
     title: "Shell Shape",
@@ -43,7 +38,6 @@ const products = [
     link: "single-product.html",
   },
   {
-    id: 6,
     img: "images/product-item2.jpg",
     alt: "product-item",
     title: "Oldie Off-White",
@@ -51,7 +45,6 @@ const products = [
     link: "single-product.html",
   },
   {
-    id: 7,
     img: "images/product-item4.jpg",
     alt: "product-item",
     title: "Opposite Pattern",
@@ -59,7 +52,6 @@ const products = [
     link: "single-product.html",
   },
   {
-    id: 8,
     img: "images/product-item3.jpg",
     alt: "product-item",
     title: "Vintage With Handle",
@@ -88,12 +80,12 @@ const ProductCarousel = ({ swiperRef }) => {
         }}
         className="product-swiper"
       >
-        {products.map((product) => (
+        {products.map((product, index) => (
           <SwiperSlide
-            key={product.id}
+            key={index}
             style={{ width: "295px" }}
             role="group"
-            aria-label={`${product.id} / ${products.length}`}
+            aria-label={`${index} / ${products.length}`}
           >
             <ProductCard product={product} />
           </SwiperSlide>

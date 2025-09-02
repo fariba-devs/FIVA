@@ -1,4 +1,4 @@
-import LocationCard from "./LocationCard.jsx";
+import LocationCard from "../features/contact/LocationCard.jsx";
 import { motion } from "framer-motion";
 
 const infoData = [

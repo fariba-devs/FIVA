@@ -1,6 +1,6 @@
 import BaseLink from "./BaseLink.jsx";
 import ArrowButton from "./ArrowButton.jsx";
-import ProductCarousel from "./ProductCarousel.jsx";
+import ProductCarousel from "../features/products/ProductCarousel.jsx";
 import { useRef } from "react";
 
 const Products = () => {

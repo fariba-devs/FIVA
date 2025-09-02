@@ -1,4 +1,4 @@
-const HeroSection = ({ children, className }) => {
+const BackgroundSection = ({ children, className }) => {
   return (
     <section
       className={`${className} relative flex md:items-center justify-center md:p-10 bg-cover bg-center bg-no-repeat`}
@@ -9,4 +9,4 @@ const HeroSection = ({ children, className }) => {
   );
 };
 
-export default HeroSection;
+export default BackgroundSection;

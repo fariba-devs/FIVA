@@ -1,4 +1,4 @@
-import HeroContent from "../ui/HeroContent.jsx";
+import HeroContent from "../features/hero/HeroContent.jsx";
 import LoginTabs from "../ui/LoginTabs.jsx";
 import NewsletterSection from "../ui/NewsletterSection.jsx";
 

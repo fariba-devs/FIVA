@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import ArrowButton from "./ArrowButton.jsx";
+import ArrowButton from "../../ui/ArrowButton.jsx";
 import TestimonialCard from "./TestimonialCard.jsx";
 
 const TestimonialsSection = () => {

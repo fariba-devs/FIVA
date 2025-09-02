@@ -1,8 +1,9 @@
 import BaseLink from "./BaseLink.jsx";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="relative mr-5 w-full">
+    <div className="mr-5 w-full">
       <div className="relative overflow-hidden cursor-pointer group">
         <img
           src={product.img}
@@ -11,16 +12,19 @@ const ProductCard = ({ product }) => {
         />
 
         <div className="absolute inset-0 flex items-end pb-3 justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity">
-          <BaseLink name={"Add to Cart"} className="pb-5" />
+          <BaseLink name="Add to Cart" className="pb-5" />
         </div>
       </div>
       <div className="text-center pt-3 pb-2">
         <h5 className="text-lg md:text-2xl lg:text-3xlg capitalize">
-          <a href={product.link} className="hover:underline">
+          <Link
+            to="/shop"
+            className="color-dark hover:text-primary transition-colors text-xl "
+          >
             {product.title}
-          </a>
+          </Link>
         </h5>
-        <span className="text-primary font-light text-lg md:text-2xl">
+        <span className="text-primary font-light text-lg md:text-xl">
           ${product.price}
         </span>
       </div>

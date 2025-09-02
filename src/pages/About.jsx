@@ -1,8 +1,7 @@
-import HeroContent from "../ui/HeroContent.jsx";
+import HeroContent from "../features/hero/HeroContent.jsx";
 import Services from "../ui/Services.jsx";
 import VasoInfo from "../ui/VasoInfo.jsx";
-import TestimonialsSection from "../ui/Testimonials.jsx";
-import HeroSection from "../ui/HeroSection.jsx";
+import TestimonialsSection from "../features/testimonials/Testimonials.jsx";
 import NewsletterSection from "../ui/NewsletterSection.jsx";
 
 const About = () => {
