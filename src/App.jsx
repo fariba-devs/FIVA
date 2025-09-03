@@ -3,7 +3,7 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import AppLayout from "./ui/AppLayout.jsx";
+import AppLayout from "./components/ui/AppLayout.jsx";
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
 import Shop from "./pages/Shop.jsx";

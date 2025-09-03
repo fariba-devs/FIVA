@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import ArrowButton from "../../ui/ArrowButton.jsx";
+import ArrowButton from "../../components/ui/ArrowButton.jsx";
 import TestimonialCard from "./TestimonialCard.jsx";
 
-const TestimonialsSection = () => {
+const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const testimonials = [
     {
+      id: 1,
       quote:
         "A pellen tesque pretium feugiat vel morbi sagittis lorem habi tasse cursus. Suspen dise tempus oncu enim pellen tesque este pretium in neque, elit morbi sagittis lorem habi mattis.",
       author: "Anna Garcia",
     },
     {
+      id: 2,
       quote:
         "Exceptional service and outstanding results! The team went above and beyond to deliver exactly what we needed. Highly recommend to anyone looking for quality work.",
       author: "John Smith",
     },
     {
+      id: 3,
       quote:
         "Professional, reliable, and innovative. Working with this team has been a game-changer for our business. The attention to detail is remarkable.",
       author: "Sarah Johnson",
@@ -37,7 +40,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section aria-label="TestimonialsSection" className="relative py-45">
+    <section aria-label="Testimonials" className="relative py-45">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Title */}
         <motion.div
@@ -67,8 +70,11 @@ const TestimonialsSection = () => {
               animate={{ x: `-${currentSlide * 100}%` }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              {testimonials.map((testimonial, index) => (
-                <TestimonialCard key={index} testimonial={testimonial} />
+              {testimonials.map((testimonial) => (
+                <TestimonialCard
+                  key={testimonial.id}
+                  testimonial={testimonial}
+                />
               ))}
             </motion.div>
           </div>
@@ -96,4 +102,4 @@ const TestimonialsSection = () => {
   );
 };
 
-export default TestimonialsSection;
+export default Testimonials;

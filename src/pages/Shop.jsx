@@ -1,6 +1,6 @@
-import HeroContent from "../features/hero/HeroContent.jsx";
-import NewsletterSection from "../ui/NewsletterSection.jsx";
-import ProductGrid from "../features/products/ProductGrid.jsx";
+import HeroContent from "../components/heroContent/HeroContent.jsx";
+import NewsletterSection from "../features/newsletter/Newsletter.jsx";
+import ProductGrid from "../features/productGrid/ProductGrid.jsx";
 
 const Shop = () => {
   return (
