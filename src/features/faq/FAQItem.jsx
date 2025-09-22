@@ -1,6 +1,6 @@
 import { memo } from "react";
-import ArrowButton from "../../components/ui/ArrowButton.jsx";
 import { ChevronUp, ChevronDown } from "lucide-react";
+
 const FAQItem = ({ faq, isOpen, onToggle }) => {
   return (
     <div className="py-2">

@@ -28,23 +28,22 @@ const benefitsData = [
 
 const Benefits = () => {
   return (
-    <>
-      <section aria-label="Benefits" className="px-8 py-16 md:py-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefitsData.map((benefit) => (
-            <div key={benefit.id} className="text-center">
-              <div className="inline-flex p-4 border border-gray-300 rounded-full mb-4 justify-center items-center">
-                {benefit.icon}
-              </div>
-              <h4 className="text-3xl mb-2 font-italiana whitespace-nowrap">
-                {benefit.title}
-              </h4>
-              <p className="text-gray-600">{benefit.description}</p>
-            </div>
-          ))}
+    <section
+      aria-label="Benefits"
+      className="px-8 py-16 md:py-24 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+    >
+      {benefitsData.map((benefit) => (
+        <div key={benefit.id} className="text-center">
+          <div className="inline-flex p-4 border border-gray-300 rounded-full mb-4 justify-center items-center">
+            {benefit.icon}
+          </div>
+          <h4 className="text-3xl mb-2 font-italiana whitespace-nowrap">
+            {benefit.title}
+          </h4>
+          <p className="text-gray-600">{benefit.description}</p>
         </div>
-      </section>
-    </>
+      ))}
+    </section>
   );
 };
 
