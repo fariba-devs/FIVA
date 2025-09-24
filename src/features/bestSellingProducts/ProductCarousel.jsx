@@ -1,76 +1,24 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "./ProductCard.jsx";
-
-const products = [
-  {
-    id: 1,
-    img: "images/product-item1.jpg",
-    alt: "product-item",
-    title: "Matt Black",
-    price: 870,
-    link: "single-product.html",
-  },
-  {
-    id: 2,
-    img: "images/product-item2.jpg",
-    alt: "product-item",
-    title: "Oldie Off-White",
-    price: 680,
-    link: "single-product.html",
-  },
-  {
-    id: 3,
-    img: "images/product-item3.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    price: 750,
-    link: "single-product.html",
-  },
-  {
-    id: 4,
-    img: "images/product-item4.jpg",
-    alt: "product-item",
-    title: "Opposite Pattern",
-    price: 650,
-    link: "single-product.html",
-  },
-  {
-    id: 5,
-    img: "images/product-item5.jpg",
-    alt: "product-item",
-    title: "Shell Shape",
-    price: 750,
-    link: "single-product.html",
-  },
-  {
-    id: 6,
-    img: "images/product-item2.jpg",
-    alt: "product-item",
-    title: "Oldie Off-White",
-    price: 750,
-    link: "single-product.html",
-  },
-  {
-    id: 7,
-    img: "images/product-item4.jpg",
-    alt: "product-item",
-    title: "Opposite Pattern",
-    price: 750,
-    link: "single-product.html",
-  },
-  {
-    id: 8,
-    img: "images/product-item3.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    price: 750,
-    link: "single-product.html",
-  },
-];
+import { useProducts } from "./useProducts.jsx";
+import Loader from "../../components/ui/Loader.jsx";
+import { getProducts } from "../../services/products.js";
 
 const ProductCarousel = ({ swiperRef }) => {
+  const { products, isLoading } = useProducts();
+  if (isLoading) return <Loader />;
+
+  getProducts()
+    .then((data) => {
+      console.log("Direct call result:", data);
+      console.log("Total items:", data?.length);
+    })
+    .catch((err) => {
+      console.error("Direct call error:", err);
+    });
+
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full overflow-hidden select-none">
       <Swiper
         onSwiper={(swiper) => {
           swiperRef.current = swiper; // 📌 ذخیره رفرنس برای کنترل
@@ -87,7 +35,7 @@ const ProductCarousel = ({ swiperRef }) => {
             spaceBetween: 20,
           },
         }}
-        className="product-swiper"
+        className="product-swiper select-none"
       >
         {products.map((product) => (
           <SwiperSlide

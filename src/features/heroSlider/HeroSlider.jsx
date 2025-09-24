@@ -2,33 +2,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import BaseLink from "../ui/BaseLink.jsx";
-
-const slides = [
-  {
-    id: 1,
-    image: "/images/HeroSlider-image.jpg",
-    title: "Ceramic soft pot",
-    desc: "This ceramic soft pot is specially designed by concept of traditional designs.",
-    align: "left",
-  },
-  {
-    id: 2,
-    image: "/images/HeroSlider-image1.jpg",
-    title: "Shiny Black Pot",
-    desc: "Beautiful shiny black pot is designed for minimalist decors.",
-    align: "right",
-  },
-  {
-    id: 3,
-    image: "/images/HeroSlider-image2.jpg",
-    title: "Shell Shape Decor",
-    desc: "Buy this beautiful unique pieces of shell shape vase decors for your plants of room.",
-    align: "left",
-  },
-];
+import BaseLink from "../../components/ui/BaseLink.jsx";
+import { useHeroSlider } from "./useHeroSlider.jsx";
+import Loader from "../../components/ui/Loader.jsx";
 
 export default function HeroSlider() {
+  const { slides, isLoading } = useHeroSlider();
+
+  if (isLoading) return <Loader />;
+
   return (
     <section aria-label="HeroSlider" className="relative overflow-hidden ">
       <Swiper
@@ -42,18 +24,18 @@ export default function HeroSlider() {
           <SwiperSlide key={slide.id}>
             <div
               className="h-screen bg-cover bg-center flex items-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
+              style={{ backgroundImage: `url(${slide.image_url})` }}
             >
               <div className="container mx-auto px-4">
                 <div
-                  className={`flex ${slide.align === "right" ? "justify-end" : "justify-start"}`}
+                  className={`flex ${slide.content_align === "right" ? "justify-end" : "justify-start"}`}
                 >
                   <div className="sm:w-3/4 md:w-2/3 lg:w-1/2 px-6 md:px-20 py-12">
                     <h2 className="font-italiana text-7xl mb-4">
                       {slide.title}
                     </h2>
                     <p className="font-light text-xl tracking-normal text-light-dark mb-6">
-                      {slide.desc}
+                      {slide.description}
                     </p>
                     <BaseLink name="Shop Now" className="px-0 py-3" />
                   </div>

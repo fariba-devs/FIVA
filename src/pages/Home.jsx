@@ -1,4 +1,4 @@
-import HeroSlider from "../components/heroSlider/HeroSlider.jsx";
+import HeroSlider from "../features/heroSlider/HeroSlider.jsx";
 import AboutUs from "../components/ui/AboutUs.jsx";
 import BestSellingProducts from "../features/bestSellingProducts/BestSellingProducts.jsx";
 import VideoHero from "../features/videoHero/VideoHero.jsx";

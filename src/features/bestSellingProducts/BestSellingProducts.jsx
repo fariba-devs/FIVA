@@ -7,7 +7,7 @@ const BestSellingProducts = () => {
   const swiperRef = useRef(null);
 
   return (
-    <section aria-label="BestSellingProducts">
+    <section aria-label="BestSellingProducts" className="select-none">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between max-w-9xl mx-auto px-4 md:px-20 py-5 gap-2">
         <h2 className="font-italiana font-medium text-4xl md:text-5xl">
           Best selling Items

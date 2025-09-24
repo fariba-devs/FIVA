@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="mr-5 w-full">
+    <div className="mr-5 w-full select-none">
       <div className="relative overflow-hidden cursor-pointer group">
         <img
-          src={product.img}
+          src={product.image}
           alt={product.alt}
           className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
         />
