@@ -1,0 +1,14 @@
+import { useQuery } from "@tanstack/react-query";
+import { getTestimonials } from "../../services/apiTestimonials.js";
+
+export function useTestimonials() {
+  const {
+    data: testimonials,
+    isPending: isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["testimonials"],
+    queryFn: getTestimonials,
+  });
+  return { isLoading, testimonials, error };
+}

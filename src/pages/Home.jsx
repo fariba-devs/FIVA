@@ -4,7 +4,7 @@ import BestSellingProducts from "../features/bestSellingProducts/BestSellingProd
 import VideoHero from "../features/videoHero/VideoHero.jsx";
 import Testimonials from "../features/testimonials/Testimonials.jsx";
 import FAQ from "../features/faq/FAQ.jsx";
-import ProductMasonry from "../components/productMasonry/ProductMasonry.jsx";
+import ProductMasonry from "../features/productMasonry/ProductMasonry.jsx";
 
 const Home = () => {
   return (

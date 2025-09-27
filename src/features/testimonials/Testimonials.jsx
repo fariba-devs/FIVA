@@ -2,30 +2,22 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ArrowButton from "../../components/ui/ArrowButton.jsx";
 import TestimonialCard from "./TestimonialCard.jsx";
-
-const testimonials = [
-  {
-    id: 1,
-    quote:
-      "A pellen tesque pretium feugiat vel morbi sagittis lorem habi tasse cursus. Suspen dise tempus oncu enim pellen tesque este pretium in neque, elit morbi sagittis lorem habi mattis.",
-    author: "Anna Garcia",
-  },
-  {
-    id: 2,
-    quote:
-      "Exceptional service and outstanding results! The team went above and beyond to deliver exactly what we needed. Highly recommend to anyone looking for quality work.",
-    author: "John Smith",
-  },
-  {
-    id: 3,
-    quote:
-      "Professional, reliable, and innovative. Working with this team has been a game-changer for our business. The attention to detail is remarkable.",
-    author: "Sarah Johnson",
-  },
-];
+import { useTestimonials } from "./useTestimonials.jsx";
+import Loader from "../../components/ui/Loader.jsx";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { testimonials, isLoading } = useTestimonials();
+
+  //تست گرفتن
+  // getTestimonials()
+  //   .then((data) => {
+  //     console.log("Direct call result:", data);
+  //     console.log("Total items:", data?.length);
+  //   })
+  //   .catch((err) => {
+  //     console.error("Direct call error:", err);
+  //   });
 
   const handleNext = () => {
     if (currentSlide < testimonials.length - 1) {
@@ -39,6 +31,7 @@ const Testimonials = () => {
     }
   };
 
+  if (isLoading) return <Loader />;
   return (
     <section aria-label="Testimonials" className="relative py-45">
       <div className="container mx-auto px-4 max-w-4xl">

@@ -1,4 +1,4 @@
-import BaseLink from "../ui/BaseLink.jsx";
+import BaseLink from "../../components/ui/BaseLink.jsx";
 import { motion } from "framer-motion";
 
 const ProductCard = ({ title, imageUrl, className = "" }) => {

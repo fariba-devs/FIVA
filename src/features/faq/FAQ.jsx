@@ -1,42 +1,11 @@
 import { useCallback, useState } from "react";
 import FAQItem from "./FAQItem.jsx";
-
-const faqs = [
-  {
-    id: 1,
-    question: "I got my vase but some items are broken, what to do?",
-    answer:
-      "If items arrived broken, contact our support within 48 hours with a photo for a replacement or refund.",
-  },
-  {
-    id: 2,
-    question: "Can I return them if I don't like the items I bought?",
-    answer:
-      "Yes, you can return unused items within 14 days, except for sale items or special orders.",
-  },
-  {
-    id: 3,
-    question: "Will we get a discount if we order many vases?",
-    answer:
-      "Yes, bulk orders may qualify for discounts. Contact us for more details.",
-  },
-  {
-    id: 4,
-    question: "Are there refunds for sale items or special orders?",
-    answer:
-      "Sale items and special orders are final sale and cannot be refunded.",
-  },
-  {
-    id: 5,
-    question: "How long will it take to get my first order?",
-    answer:
-      "Most orders are processed in 2–5 business days, plus shipping time.",
-  },
-];
+import { useFaqs } from "./useFaq.jsx";
+import Loader from "../../components/ui/Loader.jsx";
 
 const FAQ = () => {
   const [openIndexes, setOpenIndexes] = useState([]);
-
+  const { Faqs, isLoading } = useFaqs();
   // Toggles open/closed state of a FAQ item
   const toggleFAQ = useCallback((index) => {
     setOpenIndexes((prev) => {
@@ -50,6 +19,7 @@ const FAQ = () => {
     });
   }, []);
 
+  if (isLoading) return <Loader />;
   return (
     <section aria-label="FAQ" className=" py-50 ">
       <div className="container max-w-4xl mx-auto px-4">
@@ -57,7 +27,7 @@ const FAQ = () => {
           Some FAQs
         </h3>
         <div className="space-y-4 divide-y divide-gray-500">
-          {faqs.map((faq, index) => (
+          {Faqs.map((faq, index) => (
             <FAQItem
               key={faq.id}
               index={index}

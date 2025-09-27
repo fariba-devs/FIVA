@@ -1,4 +1,5 @@
 import BackgroundSection from "../../components/ui/BackgroundSection.jsx";
+import NewsletterForm from "./NewsletterForm.jsx";
 
 const Newsletter = () => {
   return (
@@ -13,18 +14,7 @@ const Newsletter = () => {
           </p>
         </div>
         {/* فرم */}
-        <form className="flex lg:justify-end">
-          <div className="flex w-full md:w-3/4 border-b border-black py-2">
-            <input
-              type="email"
-              placeholder="Your email address here"
-              className="flex-1 bg-transparent focus:outline-none text-gray-800 placeholder-gray-500"
-            />
-            <button type="button" className="ml-2 text-accent font-semibold">
-              Subscribe
-            </button>
-          </div>
-        </form>
+        <NewsletterForm />
       </div>
     </BackgroundSection>
   );

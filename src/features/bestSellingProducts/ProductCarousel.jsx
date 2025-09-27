@@ -2,20 +2,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "./ProductCard.jsx";
 import { useProducts } from "./useProducts.jsx";
 import Loader from "../../components/ui/Loader.jsx";
-import { getProducts } from "../../services/products.js";
+import { getProducts } from "../../services/apiProducts.js";
 
 const ProductCarousel = ({ swiperRef }) => {
   const { products, isLoading } = useProducts();
   if (isLoading) return <Loader />;
-
-  getProducts()
-    .then((data) => {
-      console.log("Direct call result:", data);
-      console.log("Total items:", data?.length);
-    })
-    .catch((err) => {
-      console.error("Direct call error:", err);
-    });
 
   return (
     <div className="w-full overflow-hidden select-none">
