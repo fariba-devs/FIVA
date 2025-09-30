@@ -3,93 +3,31 @@ import ProductCard from "../bestSellingProducts/ProductCard.jsx";
 import Pagination from "./Pagination.jsx";
 import ProductSidebar from "./ProductSidebar.jsx";
 import OurStore from "../ourStore/OurStore.jsx";
-
-const products = [
-  {
-    id: 1,
-    name: "Matt Black",
-    price: 750,
-    img: "/images/product-item1.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-  {
-    id: 2,
-    name: "Oldie Off-White",
-    price: 750,
-    img: "images/product-item2.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-  {
-    id: 3,
-    name: "Vintage With Handle",
-    price: 750,
-    img: "images/product-item3.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-  {
-    id: 4,
-    name: "Opposite Pattern",
-    price: 750,
-    img: "images/product-item4.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-  {
-    id: 5,
-    name: "Shell Shape",
-    price: 750,
-    img: "images/product-item5.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-  {
-    id: 6,
-    name: "Matt Black",
-    price: 750,
-    img: "images/product-item4.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-  {
-    id: 7,
-    name: "Oldie Off-White",
-    price: 750,
-    img: "images/product-item2.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-  {
-    id: 8,
-    name: "Matt Black",
-    price: 750,
-    img: "images/product-item3.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-  {
-    id: 9,
-    name: "Opposite Pattern",
-    price: 750,
-    img: "images/product-item4.jpg",
-    alt: "product-item",
-    title: "Vintage With Handle",
-    link: "single-product.html",
-  },
-];
+import { useProducts } from "../bestSellingProducts/useProducts.jsx";
+import Loading from "../../components/ui/Loading.jsx";
 
 const ProductGrid = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const { products, isLoading } = useProducts();
+
   const [sortBy, setSortBy] = useState("");
+
+  const PRODUCTS_PER_PAGE = 9;
+
+  if (isLoading) return <Loading />;
+
+  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
+
+  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const endIndex = startIndex + PRODUCTS_PER_PAGE;
+
+  const currentProducts = products.slice(startIndex, endIndex);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    // اختیاری: scroll به بالای صفحه
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <section
@@ -101,7 +39,10 @@ const ProductGrid = () => {
         {/* Filter and Sort Header */}
         <div className="flex flex-row justify-between items-center mb-4 gap-4">
           <div className="text-light-dark font-light text-lg">
-            <p>Showing 1-9 of 55 results</p>
+            <p>
+              Showing {startIndex + 1}-{Math.min(endIndex, products.length)} of{" "}
+              {products.length} results
+            </p>
           </div>
           <div className="w-auto">
             <select
@@ -124,13 +65,17 @@ const ProductGrid = () => {
 
         {/* bestSellingProducts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {products.map((product) => (
+          {currentProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
         {/* Pagination */}
-        <Pagination />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
       </main>
 
       {/* Sidebar */}

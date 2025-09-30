@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import ArrowButton from "../../components/ui/ArrowButton.jsx";
 import TestimonialCard from "./TestimonialCard.jsx";
 import { useTestimonials } from "./useTestimonials.jsx";
-import Loader from "../../components/ui/Loader.jsx";
+import Loading from "../../components/ui/Loading.jsx";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -31,7 +31,7 @@ const Testimonials = () => {
     }
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
   return (
     <section aria-label="Testimonials" className="relative py-45">
       <div className="container mx-auto px-4 max-w-4xl">

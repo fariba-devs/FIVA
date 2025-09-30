@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Logo from "../ui/Logo.jsx";
 import NavItem from "./NavItem.jsx";
 import NavItemWithSubmenu from "./NavItemWithSubmenu.jsx";
+import { useUser } from "../../features/loginTabs/useUser.jsx";
 
 const menuItems = [
   { to: "/about", label: "About" },
@@ -24,6 +25,14 @@ const MainNav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef(null);
+  const { isAuthenticated, isLoading } = useUser();
+
+  const getLabel = (item) => {
+    if (item.to === "/account" && !isLoading && isAuthenticated) {
+      return "Account ✓";
+    }
+    return item.label;
+  };
 
   // بستن سرچ وقتی بیرون کلیک میشه
   useEffect(() => {
@@ -109,7 +118,7 @@ const MainNav = () => {
             <NavItem
               key={item.to}
               to={item.to}
-              label={item.label}
+              label={getLabel(item)}
               className="flex items-center w-fit justify-center"
             />
           ))}
@@ -152,7 +161,7 @@ const MainNav = () => {
             item.hasSubmenu ? (
               <NavItemWithSubmenu key={item.to} item={item} mobile={true} />
             ) : (
-              <NavItem key={item.to} to={item.to} label={item.label} />
+              <NavItem key={item.to} to={item.to} label={getLabel(item)} />
             ),
           )}
         </ul>

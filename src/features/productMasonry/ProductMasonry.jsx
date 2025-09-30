@@ -1,12 +1,12 @@
 import React from "react";
 import ProductCard from "./ProductCard.jsx";
 import { useProductMasonry } from "./useProductMasonry.jsx";
-import Loader from "../../components/ui/Loader.jsx";
+import Loading from "../../components/ui/Loading.jsx";
 
 const ProductMasonry = () => {
   const { productMasonry, isLoading } = useProductMasonry();
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
 
   return (
     <section aria-label="ProductMasonry" className="h-[140vh] xl:h-screen">

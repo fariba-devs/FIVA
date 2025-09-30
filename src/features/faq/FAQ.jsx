@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import FAQItem from "./FAQItem.jsx";
 import { useFaqs } from "./useFaq.jsx";
-import Loader from "../../components/ui/Loader.jsx";
+import Loading from "../../components/ui/Loading.jsx";
 
 const FAQ = () => {
   const [openIndexes, setOpenIndexes] = useState([]);
@@ -19,7 +19,7 @@ const FAQ = () => {
     });
   }, []);
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
   return (
     <section aria-label="FAQ" className=" py-50 ">
       <div className="container max-w-4xl mx-auto px-4">

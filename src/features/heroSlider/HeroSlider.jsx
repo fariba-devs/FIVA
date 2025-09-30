@@ -4,12 +4,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import BaseLink from "../../components/ui/BaseLink.jsx";
 import { useHeroSlider } from "./useHeroSlider.jsx";
-import Loader from "../../components/ui/Loader.jsx";
+import Loading from "../../components/ui/Loading.jsx";
 
 export default function HeroSlider() {
   const { slides, isLoading } = useHeroSlider();
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
 
   return (
     <section aria-label="HeroSlider" className="relative overflow-hidden ">

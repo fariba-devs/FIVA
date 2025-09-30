@@ -1,4 +1,4 @@
-const Loader = () => {
+const Loading = () => {
   return (
     <section className="relative overflow-hidden h-screen flex items-center justify-center">
       <div className="text-center">
@@ -9,4 +9,4 @@ const Loader = () => {
   );
 };
 
-export default Loader;
+export default Loading;

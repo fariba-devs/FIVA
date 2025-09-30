@@ -1,5 +1,5 @@
 import { useContactSection } from "./useContactSection.jsx";
-import Loader from "../../components/ui/Loader.jsx";
+import Loading from "../../components/ui/Loading.jsx";
 import { useState } from "react";
 
 const ContactSectionForm = () => {
@@ -36,7 +36,7 @@ const ContactSectionForm = () => {
     });
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
   return (
     <form onSubmit={handleSubmit} id="form" className="space-y-6">
       <div>

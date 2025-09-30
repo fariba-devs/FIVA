@@ -1,12 +1,12 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "./ProductCard.jsx";
 import { useProducts } from "./useProducts.jsx";
-import Loader from "../../components/ui/Loader.jsx";
+import Loading from "../../components/ui/Loading.jsx";
 import { getProducts } from "../../services/apiProducts.js";
 
 const ProductCarousel = ({ swiperRef }) => {
   const { products, isLoading } = useProducts();
-  if (isLoading) return <Loader />;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="w-full overflow-hidden select-none">
