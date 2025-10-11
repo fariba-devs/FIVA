@@ -1,5 +1,7 @@
+import HeroContent from "../components/heroContent/HeroContent.jsx";
+
 const Cart = () => {
-  return <div>Cart</div>;
+  return <HeroContent name="Cart" />;
 };
 
 export default Cart;

@@ -1,20 +1,34 @@
-import { useState } from "react";
 import { Search } from "lucide-react";
 import SidebarProductSection from "./SidebarProductSection.jsx";
+import { useFilters } from "./useFilters.jsx";
+import React from "react";
 
-const ProductSidebar = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+const ProductSidebar = ({ searchParams, setSearchParams }) => {
+  const { categories, tags, productsList, isLoading, error } = useFilters();
 
-  const categories = ["All", "Japanese", "Ceramic", "Ancient", "Soft Pots"];
-  const tags = ["Off-White", "Cheap", "Vintage", "Modern"];
-  const otherProducts = ["Bowls", "Anchora", "Plates"];
-  const priceRanges = [
-    "Less than $100",
-    "$100 - $200",
-    "$200 - $300",
-    "$300 - $400",
-    "$400 - $500",
+  const searchTerm = searchParams.get("search") || "";
+  const selectedCategory = searchParams.get("category") || "All";
+  const selectedTag = searchParams.get("tag") || null;
+  const selectedProduct = searchParams.get("productList") || null;
+  const selectedPrice = searchParams.get("price") || null;
+
+  const price = [
+    { value: "0-300", label: "Less than $300" },
+    { value: "300-500", label: "$300 - $500" },
+    { value: "500-700", label: "$500 - $700" },
+    { value: "700-900", label: "$700 - $900" },
+    { value: "900-1200", label: "$900 - $1200" },
   ];
+
+  const handleSelect = (key, value) => {
+    const params = new URLSearchParams(searchParams);
+    if (!value || value === "All") params.delete(key);
+    else params.set(key, value);
+    setSearchParams(params);
+  };
+
+  if (isLoading) return <p className="p-4">Loading filters...</p>;
+  if (error) return <p className="p-4 text-red-500">Failed to load filters</p>;
 
   return (
     <aside className="md:col-span-1 p-6">
@@ -24,7 +38,7 @@ const ProductSidebar = () => {
           type="search"
           placeholder="Search"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => handleSelect("search", e.target.value)}
           className="text-lg lg:text-xl w-full pl-4 pr-10 py-2 border-b border-gray-900 bg-transparent focus:outline-none "
         />
         <button className="absolute right-0 top-1/2 transform -translate-y-1/2">
@@ -33,16 +47,36 @@ const ProductSidebar = () => {
       </div>
 
       {/* Categories */}
-      <SidebarProductSection title="Categories" items={categories} />
+      <SidebarProductSection
+        title="Categories"
+        items={categories.map((c) => ({ value: c.name, label: c.name }))}
+        selectedItem={selectedCategory}
+        onSelect={(val) => handleSelect("category", val)}
+      />
 
       {/* Tags */}
-      <SidebarProductSection title="Tags" items={tags} />
+      <SidebarProductSection
+        title="Tags"
+        items={tags.map((t) => ({ value: t.name, label: t.name }))}
+        selectedItem={selectedTag}
+        onSelect={(val) => handleSelect("tag", val)}
+      />
 
       {/* Other bestSellingProducts */}
-      <SidebarProductSection title="other products" items={otherProducts} />
+      <SidebarProductSection
+        title="ProductsList"
+        items={productsList.map((p) => ({ value: p.name, label: p.name }))}
+        selectedItem={selectedProduct}
+        onSelect={(val) => handleSelect("productList", val)}
+      />
 
       {/* Price Filter */}
-      <SidebarProductSection title="Filter By Price" items={priceRanges} />
+      <SidebarProductSection
+        title="Price"
+        items={price}
+        selectedItem={selectedPrice}
+        onSelect={(val) => handleSelect("price", val)}
+      />
     </aside>
   );
 };

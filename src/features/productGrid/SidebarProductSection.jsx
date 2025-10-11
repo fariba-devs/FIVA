@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SidebarProductSection = ({ title, items }) => {
+const SidebarProductSection = ({ title, items, selectedItem, onSelect }) => {
   return (
     <div className="mb-10">
       <h5 className="text-xl md:text-2xl font-medium font-italiana text-gray-900 uppercase pb-1 mb-3 whitespace-nowrap">
@@ -10,12 +10,16 @@ const SidebarProductSection = ({ title, items }) => {
       <ul className="space-y-2">
         {items.map((item, index) => (
           <li key={index}>
-            <Link
-              to="/shop"
-              className="text-primary hover:text-gray-900 transition-colors text-lg "
+            <button
+              onClick={() => onSelect(item.value)}
+              className={`text-lg transition-colors ${
+                selectedItem === item.value
+                  ? "text-gray-900 font-bold"
+                  : "text-primary hover:text-gray-900"
+              }`}
             >
-              {item}
-            </Link>
+              {item.label}
+            </button>
           </li>
         ))}
       </ul>

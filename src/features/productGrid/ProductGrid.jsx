@@ -1,33 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import ProductCard from "../bestSellingProducts/ProductCard.jsx";
 import Pagination from "./Pagination.jsx";
 import ProductSidebar from "./ProductSidebar.jsx";
-import OurStore from "../ourStore/OurStore.jsx";
-import { useProducts } from "../bestSellingProducts/useProducts.jsx";
 import Loading from "../../components/ui/Loading.jsx";
+import { useProductGrid } from "./useProductGrid.jsx";
 
 const ProductGrid = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const { products, isLoading } = useProducts();
-
-  const [sortBy, setSortBy] = useState("");
-
-  const PRODUCTS_PER_PAGE = 9;
+  const {
+    products,
+    isLoading,
+    currentProducts,
+    totalPages,
+    currentPage,
+    setSortBy,
+    startIndex,
+    endIndex,
+    sortBy,
+    filters,
+    searchParams,
+    setSearchParams,
+    handlePageChange,
+  } = useProductGrid();
 
   if (isLoading) return <Loading />;
-
-  const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
-
-  const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-  const endIndex = startIndex + PRODUCTS_PER_PAGE;
-
-  const currentProducts = products.slice(startIndex, endIndex);
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-    // اختیاری: scroll به بالای صفحه
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <section
@@ -55,8 +50,6 @@ const ProductGrid = () => {
               <option value="name-desc">Name (Z - A)</option>
               <option value="price-asc">Price (Low-High)</option>
               <option value="price-desc">Price (High-Low)</option>
-              <option value="rating-desc">Rating (Highest)</option>
-              <option value="rating-asc">Rating (Lowest)</option>
               <option value="model-asc">Model (A - Z)</option>
               <option value="model-desc">Model (Z - A)</option>
             </select>
@@ -78,8 +71,12 @@ const ProductGrid = () => {
         />
       </main>
 
-      {/* Sidebar */}
-      <ProductSidebar />
+      {/* Sidebar با URL handlers */}
+      <ProductSidebar
+        filters={filters}
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
+      />
     </section>
   );
 };

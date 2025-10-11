@@ -2,6 +2,9 @@ import BaseLink from "../../components/ui/BaseLink.jsx";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
+  console.log("ProductCard received:", product); // این خط رو اضافه کنید
+  console.log("Image URL:", product?.image); // چک کنید image وجود داره
+
   return (
     <div className="mr-5 w-full select-none">
       <div className="relative overflow-hidden cursor-pointer group">

@@ -1,14 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProducts } from "../../services/apiProducts.js";
+import { apiProducts } from "../../services/apiProducts.js";
 
-export function useProducts() {
+export function useProducts(withRelations = false) {
   const {
-    data: products,
+    data: products = [],
     isPending: isLoading,
     error,
   } = useQuery({
-    queryKey: ["products"],
-    queryFn: getProducts,
+    queryKey: ["products", withRelations], // ✅ اضافه کردن withRelations به queryKey
+    queryFn: () => apiProducts({ withRelations }), // ✅ تبدیل به arrow function
   });
+
+  console.log("🔥 useProducts hook:", {
+    productsCount: products.length,
+    isLoading,
+    hasError: !!error,
+    firstProduct: products[0],
+  });
+
   return { isLoading, products, error };
 }

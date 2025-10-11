@@ -3,6 +3,7 @@ import Logo from "../ui/Logo.jsx";
 import NavItem from "./NavItem.jsx";
 import NavItemWithSubmenu from "./NavItemWithSubmenu.jsx";
 import { useUser } from "../../features/loginTabs/useUser.jsx";
+import CartDrawer from "../cartDrawer/CartDrawer.jsx";
 
 const menuItems = [
   { to: "/about", label: "About" },
@@ -26,6 +27,8 @@ const MainNav = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef(null);
   const { isAuthenticated, isLoading } = useUser();
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const getLabel = (item) => {
     if (item.to === "/account" && !isLoading && isAuthenticated) {
@@ -119,8 +122,22 @@ const MainNav = () => {
               key={item.to}
               to={item.to}
               label={getLabel(item)}
-              className="flex items-center w-fit justify-center"
-            />
+              className="flex items-center w-fit justify-center relative"
+              onClick={(e) => {
+                if (item.to === "/cart") {
+                  e.stopPropagation(); // جلوگیری از رسیدن event به document
+                  setIsCartOpen((prev) => !prev); //✅ toggle
+                }
+              }}
+            >
+              {/* فقط برای Cart Drawer */}
+              {item.to === "/cart" && (
+                <CartDrawer
+                  isOpen={isCartOpen}
+                  onClose={() => setIsCartOpen(false)}
+                />
+              )}
+            </NavItem>
           ))}
         </ul>
       </div>

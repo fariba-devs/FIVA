@@ -2,10 +2,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "./ProductCard.jsx";
 import { useProducts } from "./useProducts.jsx";
 import Loading from "../../components/ui/Loading.jsx";
-import { getProducts } from "../../services/apiProducts.js";
 
 const ProductCarousel = ({ swiperRef }) => {
   const { products, isLoading } = useProducts();
+  console.log("🔍 products :", products);
+
   if (isLoading) return <Loading />;
 
   return (
