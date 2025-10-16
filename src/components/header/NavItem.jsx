@@ -1,12 +1,6 @@
 import { NavLink } from "react-router-dom";
 
 const NavItem = ({ to, label, className, onClick, children }) => {
-  const handleClick = (e) => {
-    if (onClick) {
-      e.preventDefault(); // جلوگیری از رفتن به صفحه
-      onClick(e);
-    }
-  };
   return (
     <li className="relative">
       <NavLink
@@ -14,7 +8,7 @@ const NavItem = ({ to, label, className, onClick, children }) => {
         className={({ isActive }) =>
           ` hover:text-accent ${className} ${isActive ? "text-accent" : ""}`
         }
-        onClick={handleClick}
+        onClick={onClick}
       >
         <span>{label}</span>
       </NavLink>

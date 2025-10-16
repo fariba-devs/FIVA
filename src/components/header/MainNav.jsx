@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import Logo from "../ui/Logo.jsx";
 import NavItem from "./NavItem.jsx";
 import NavItemWithSubmenu from "./NavItemWithSubmenu.jsx";
-import { useUser } from "../../features/loginTabs/useUser.jsx";
-import CartDrawer from "../cartDrawer/CartDrawer.jsx";
+import { useUser } from "../../features/auth/useUser.jsx";
+import CartDrawer from "./CartDrawer.jsx";
 
 const menuItems = [
   { to: "/about", label: "About" },
@@ -123,12 +123,15 @@ const MainNav = () => {
               to={item.to}
               label={getLabel(item)}
               className="flex items-center w-fit justify-center relative"
-              onClick={(e) => {
-                if (item.to === "/cart") {
-                  e.stopPropagation(); // جلوگیری از رسیدن event به document
-                  setIsCartOpen((prev) => !prev); //✅ toggle
-                }
-              }}
+              onClick={
+                item.to === "/cart"
+                  ? (e) => {
+                      e.preventDefault(); // جلوگیری از رفتن به صفحه
+                      e.stopPropagation(); // جلوگیری از رسیدن event به document- یعنی روی دکمه زدی دیکه متوقف شو
+                      setIsCartOpen((prev) => !prev); //✅ toggle
+                    }
+                  : undefined //فقط برای cart ✅ برای Account اصلاً onClick نداریم
+              }
             >
               {/* فقط برای Cart Drawer */}
               {item.to === "/cart" && (

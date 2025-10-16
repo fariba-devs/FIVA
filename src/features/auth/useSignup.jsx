@@ -7,7 +7,7 @@ export function useSignup() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate: signup, isLoading } = useMutation({
+  const { mutate: signup, isPending: isLoading } = useMutation({
     mutationFn: apiSignup,
     onSuccess: (data) => {
       // Cache رو invalidate کن تا user جدید رو بگیره

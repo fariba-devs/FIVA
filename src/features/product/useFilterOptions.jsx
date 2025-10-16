@@ -26,8 +26,8 @@ export const useProductsList = () => {
   });
 };
 
-// Hook ترکیبی برای همه فیلترها
-export const useFilters = () => {
+// Hook for all fillters ******************************************************************
+export const useFilterOptions = () => {
   const categoriesQuery = useCategories();
   const tagsQuery = useTags();
   const productsListQuery = useProductsList();

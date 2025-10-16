@@ -3,7 +3,7 @@ import { getHero } from "../../services/apiHeroSilder.js";
 
 export function useHeroSlider() {
   const {
-    data: slides,
+    data: slides = [],
     isPending: isLoading,
     error,
   } = useQuery({

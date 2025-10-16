@@ -39,6 +39,7 @@ const ProductGrid = () => {
               {products.length} results
             </p>
           </div>
+          {/* Sort ******************************************************************/}
           <div className="w-auto">
             <select
               value={sortBy}
@@ -50,20 +51,18 @@ const ProductGrid = () => {
               <option value="name-desc">Name (Z - A)</option>
               <option value="price-asc">Price (Low-High)</option>
               <option value="price-desc">Price (High-Low)</option>
-              <option value="model-asc">Model (A - Z)</option>
-              <option value="model-desc">Model (Z - A)</option>
             </select>
           </div>
         </div>
 
-        {/* bestSellingProducts Grid */}
+        {/* Show currentProducts ***************************************************/}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           {currentProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
-        {/* Pagination */}
+        {/* Pagination ******************************************************************/}
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
@@ -71,7 +70,7 @@ const ProductGrid = () => {
         />
       </main>
 
-      {/* Sidebar با URL handlers */}
+      {/* Sidebar : Search Bar & filter *************************************************/}
       <ProductSidebar
         filters={filters}
         searchParams={searchParams}

@@ -4,20 +4,6 @@ import SignupForm from "./SignupForm.jsx";
 
 const LoginTabs = () => {
   const [activeTab, setActiveTab] = useState("signin");
-  const [formData, setFormData] = useState({
-    password: "",
-    email: "",
-    rememberMe: false,
-    agreeToPrivacy: false,
-  });
-
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
 
   return (
     <section aria-label="LoginTabs" className="py-20 container mx-auto px-10">
@@ -48,13 +34,7 @@ const LoginTabs = () => {
       </div>
 
       {/* Tab Content */}
-      <>
-        {activeTab === "signin" ? (
-          <SignInForm formData={formData} onInputChange={handleInputChange} />
-        ) : (
-          <SignupForm formData={formData} onInputChange={handleInputChange} />
-        )}
-      </>
+      <>{activeTab === "signin" ? <SignInForm /> : <SignupForm />}</>
     </section>
   );
 };

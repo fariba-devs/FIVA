@@ -1,11 +1,14 @@
 import { Search } from "lucide-react";
 import SidebarProductSection from "./SidebarProductSection.jsx";
-import { useFilters } from "./useFilters.jsx";
+import { useFilterOptions } from "./useFilterOptions.jsx";
 import React from "react";
+import Loading from "../../components/ui/Loading.jsx";
 
 const ProductSidebar = ({ searchParams, setSearchParams }) => {
-  const { categories, tags, productsList, isLoading, error } = useFilters();
+  const { categories, tags, productsList, isLoading, error } =
+    useFilterOptions();
 
+  //* Reading parameters (search & filter) from the URL ******************************************************************/
   const searchTerm = searchParams.get("search") || "";
   const selectedCategory = searchParams.get("category") || "All";
   const selectedTag = searchParams.get("tag") || null;
@@ -20,6 +23,10 @@ const ProductSidebar = ({ searchParams, setSearchParams }) => {
     { value: "900-1200", label: "$900 - $1200" },
   ];
 
+  // Using searchParams (React Router)******************************************************************
+  // Storing selected filters in the URL
+  // Updating the URL with setSearchParams
+
   const handleSelect = (key, value) => {
     const params = new URLSearchParams(searchParams);
     if (!value || value === "All") params.delete(key);
@@ -27,12 +34,13 @@ const ProductSidebar = ({ searchParams, setSearchParams }) => {
     setSearchParams(params);
   };
 
-  if (isLoading) return <p className="p-4">Loading filters...</p>;
+  //* isLoading & error ******************************************************************/
+  if (isLoading) return <Loading />;
   if (error) return <p className="p-4 text-red-500">Failed to load filters</p>;
 
   return (
     <aside className="md:col-span-1 p-6">
-      {/* Search Bar */}
+      {/* Search Bar ******************************************************************/}
       <div className="mb-10 relative">
         <input
           type="search"
@@ -46,7 +54,7 @@ const ProductSidebar = ({ searchParams, setSearchParams }) => {
         </button>
       </div>
 
-      {/* Categories */}
+      {/* Categories ******************************************************************/}
       <SidebarProductSection
         title="Categories"
         items={categories.map((c) => ({ value: c.name, label: c.name }))}
@@ -54,7 +62,7 @@ const ProductSidebar = ({ searchParams, setSearchParams }) => {
         onSelect={(val) => handleSelect("category", val)}
       />
 
-      {/* Tags */}
+      {/* Tags ******************************************************************/}
       <SidebarProductSection
         title="Tags"
         items={tags.map((t) => ({ value: t.name, label: t.name }))}
@@ -62,7 +70,7 @@ const ProductSidebar = ({ searchParams, setSearchParams }) => {
         onSelect={(val) => handleSelect("tag", val)}
       />
 
-      {/* Other bestSellingProducts */}
+      {/* Other bestSellingProducts ******************************************************************/}
       <SidebarProductSection
         title="ProductsList"
         items={productsList.map((p) => ({ value: p.name, label: p.name }))}
@@ -70,7 +78,7 @@ const ProductSidebar = ({ searchParams, setSearchParams }) => {
         onSelect={(val) => handleSelect("productList", val)}
       />
 
-      {/* Price Filter */}
+      {/* Price Filter ******************************************************************/}
       <SidebarProductSection
         title="Price"
         items={price}

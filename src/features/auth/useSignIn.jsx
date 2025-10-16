@@ -7,7 +7,7 @@ export function useSignIn() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { mutate: signIn, isLoading } = useMutation({
+  const { mutate: signIn, isPending: isLoading } = useMutation({
     mutationFn: apiSignIn,
     onSuccess: (data) => {
       queryClient.invalidateQueries(["user"]);
