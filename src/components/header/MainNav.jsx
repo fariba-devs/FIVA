@@ -181,7 +181,28 @@ const MainNav = () => {
             item.hasSubmenu ? (
               <NavItemWithSubmenu key={item.to} item={item} mobile={true} />
             ) : (
-              <NavItem key={item.to} to={item.to} label={getLabel(item)} />
+              <NavItem
+                key={item.to}
+                to={item.to}
+                label={getLabel(item)}
+                onClick={
+                  item.to === "/cart"
+                    ? (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setIsCartOpen((prev) => !prev);
+                      }
+                    : undefined
+                }
+              >
+                {/* اضافه کردن CartDrawer */}
+                {item.to === "/cart" && (
+                  <CartDrawer
+                    isOpen={isCartOpen}
+                    onClose={() => setIsCartOpen(false)}
+                  />
+                )}
+              </NavItem>
             ),
           )}
         </ul>
