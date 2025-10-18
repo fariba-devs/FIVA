@@ -21,6 +21,7 @@ export const useProductGrid = (productsPerPage = 9) => {
       maxPrice = max;
     }
     return {
+      search: searchParams.get("search") || "", // ⭐ اضافه شد
       category: searchParams.get("category") || "All",
       tag: searchParams.get("tag"),
       productList: searchParams.get("productList"),

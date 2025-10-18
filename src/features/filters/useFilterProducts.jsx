@@ -1,10 +1,26 @@
 import { useMemo } from "react";
 
 export const useFilterProducts = (products, activeFilters) => {
-
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
-      const { categories, tags, productsList, price } = product;
+      const {
+        categories,
+        tags,
+        productsList,
+        price,
+        title,
+        description,
+        brand,
+      } = product;
+
+      // ⭐ 1. فیلتر سرچ - جستجو در نام، توضیحات، برند
+      const searchMatch =
+        !activeFilters.search ||
+        title?.toLowerCase().includes(activeFilters.search.toLowerCase()) ||
+        description
+          ?.toLowerCase()
+          .includes(activeFilters.search.toLowerCase()) ||
+        brand?.toLowerCase().includes(activeFilters.search.toLowerCase());
 
       const categoryMatch =
         activeFilters.category === "All" ||
@@ -19,7 +35,13 @@ export const useFilterProducts = (products, activeFilters) => {
         !activeFilters.productList ||
         productsList?.name === activeFilters.productList;
 
-      return categoryMatch && tagMatch && priceMatch && productListMatch;
+      return (
+        searchMatch &&
+        categoryMatch &&
+        tagMatch &&
+        priceMatch &&
+        productListMatch
+      );
     });
   }, [products, activeFilters]);
 
