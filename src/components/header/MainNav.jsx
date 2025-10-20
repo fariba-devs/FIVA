@@ -4,6 +4,7 @@ import NavItem from "./NavItem.jsx";
 import NavItemWithSubmenu from "./NavItemWithSubmenu.jsx";
 import { useUser } from "../../features/auth/useUser.jsx";
 import CartDrawer from "./CartDrawer.jsx";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const menuItems = [
   { to: "/about", label: "About" },
@@ -27,14 +28,43 @@ const MainNav = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef(null);
   const { isAuthenticated, isLoading } = useUser();
+  const [searchQuery, setSearchQuery] = useState(""); // ⭐ اضافه شد
 
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
 
   const getLabel = (item) => {
     if (item.to === "/account" && !isLoading && isAuthenticated) {
       return "Account ✓";
     }
     return item.label;
+  };
+  // Search ****************************************************************************************
+  // ⭐ تابع برای اعمال سرچ
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      // اگر در صفحه shop هستیم، فقط URL را آپدیت کن
+      if (location.pathname === "/shop") {
+        const params = new URLSearchParams(searchParams);
+        params.set("search", searchQuery.trim());
+        navigate(`/shop?${params.toString()}`);
+      } else {
+        // اگر در صفحه دیگری هستیم، برو به shop با پارامتر سرچ
+        navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
+      }
+      setSearchOpen(false);
+      setSearchQuery("");
+    }
+  };
+
+  // ⭐ سرچ با فشردن Enter
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
   };
 
   // بستن سرچ وقتی بیرون کلیک میشه
@@ -54,6 +84,8 @@ const MainNav = () => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, [searchOpen]);
 
+  // ****************************************************************************************
+  // Detect scroll position and update navbar state *************************************************
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -65,6 +97,7 @@ const MainNav = () => {
     // پاک کردن event listener وقتی کامپوننت unmount میشه
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+  // ****************************************************************************************
 
   return (
     <nav
@@ -96,21 +129,30 @@ const MainNav = () => {
         {/* آیتم‌های سمت راست (Search, Account, Cart) */}
         <ul className="flex items-center lg:space-x-18 xl:space-x-28 text-dark font-medium text-lg ">
           <li>
-            {/* باکس سرچ داخل li */}
+            {/* باکس سرچ داخل li */} {/* ⭐ باکس سرچ با قابلیت جستجو */}
             <div className="relative flex items-center w-fit justify-center transition-all duration-200">
               {searchOpen && (
                 <input
                   ref={searchRef}
                   type="text"
-                  placeholder="Search Here..."
+                  placeholder="Search products..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleKeyPress}
                   className="absolute right-full text-md px-1 py-0.5 focus:outline-none transition-all duration-500 border-b border-black w-40"
                   autoFocus
                 />
               )}
               <button
                 type="button"
-                onClick={() => setSearchOpen(true)}
-                className="whitespace-nowrap"
+                onClick={() => {
+                  if (searchOpen && searchQuery.trim()) {
+                    handleSearch();
+                  } else {
+                    setSearchOpen(true);
+                  }
+                }}
+                className="whitespace-nowrap hover:text-accent transition-colors"
               >
                 Search
               </button>
