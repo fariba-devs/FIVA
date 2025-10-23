@@ -15,6 +15,8 @@ import Cart from "./pages/Cart.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
+import Checkout from "./pages/Checkout.jsx";
+import SingleProduct from "./pages/SingleProduct.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,8 @@ const router = createBrowserRouter([
       { path: "pages/blog", element: <Blog /> },
       { path: "account", element: <Account /> },
       { path: "cart", element: <Cart /> },
+      { path: "checkout", element: <Checkout /> },
+      { path: "singleProduct", element: <SingleProduct /> },
       { path: "*", element: <PageNotFound /> },
     ],
   },

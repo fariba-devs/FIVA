@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 // داده‌های تستی برای سبد خرید
 const cartItems = [
@@ -10,13 +11,16 @@ const CartDrawer = ({ isOpen, onClose }) => {
   const itemCount = cartItems.length;
   const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate(); // 👈 استفاده از هوک ناوبری
 
   // اکشن‌های دکمه‌ها
   const onViewCart = () => {
-    console.log("🛒 View Cart clicked");
+    navigate("/cart"); // 👈 انتقال به صفحه cart
+    onClose(); // 👈 بستن Drawer بعد از رفتن به cart
   };
   const onCheckout = () => {
-    console.log("💳 Checkout clicked");
+    navigate("/checkout"); // 👈 انتقال به صفحه checkout
+    onClose(); // 👈 بستن Drawer بعد از رفتن به cart
   };
 
   // بستن خودکار وقتی بیرون کلیک میشه
@@ -89,7 +93,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
       {cartItems.length > 0 && (
         <div className="p-5 bg-white space-y-3">
           <button
-            onClick={onViewCart}
+            onClick={onViewCart} // 👈
             className="w-full bg-gray-900 text-white m-1 py-3.5 text-base font-normal hover:bg-gray-800 transition-colors"
           >
             View Cart

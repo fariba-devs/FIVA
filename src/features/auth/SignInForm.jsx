@@ -3,6 +3,7 @@ import { useUser } from "./useUser.jsx";
 import Loading from "../../components/ui/Loading.jsx";
 import ProfileSection from "./ProfileSection.jsx";
 import { useForm } from "react-hook-form";
+import Input from "../../components/ui/Input.jsx";
 
 const SignInForm = () => {
   const { isAuthenticated } = useUser();
@@ -36,60 +37,40 @@ const SignInForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       {/* Email Field ***********************************************************************/}
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-lg font-medium text-gray-700 mb-2"
-        >
-          Email address *
-        </label>
-        <input
-          id="email"
-          type="email"
-          placeholder="Enter Your Email Address"
-          className={`w-full px-3 py-2 border-b focus:outline-none transition-colors ${
-            errors.email ? "border-red-500" : "border-accent"
-          }`}
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "Invalid email address",
-            },
-          })}
-        />
-        {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-        )}
-      </div>
+
+      <Input
+        label="Email Address"
+        type="email"
+        placeholder="Enter Your Email Address"
+        required
+        {...register("email", {
+          required: "Email is required",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Invalid email address",
+          },
+        })}
+        error={errors.email}
+      />
 
       {/* Password Field ***********************************************************************/}
-      <div>
-        <label
-          htmlFor="password"
-          className="block text-lg font-medium text-gray-700 mb-2"
-        >
-          Password *
-        </label>
-        <input
-          id="password"
-          type="password"
-          placeholder="Enter Your Password"
-          className={`w-full px-3 py-2 border-b focus:outline-none transition-colors ${
-            errors.password ? "border-red-500" : "border-accent"
-          }`}
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 6,
-              message: "Password must be at least 6 characters",
-            },
-          })}
-        />
-        {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
-        )}
-      </div>
+      <Input
+        label="password"
+        type="password"
+        placeholder="Enter Your Password"
+        className={`w-full px-3 py-2 border-b focus:outline-none transition-colors ${
+          errors.password ? "border-red-500" : "border-accent"
+        }`}
+        required
+        {...register("password", {
+          required: "Password is required",
+          minLength: {
+            value: 6,
+            message: "Password must be at least 6 characters",
+          },
+        })}
+        error={errors.password}
+      />
 
       {/* Remember Me & Forgot Password ***********************************************************************/}
       <div className="flex items-center justify-between">

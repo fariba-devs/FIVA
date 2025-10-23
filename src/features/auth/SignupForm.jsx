@@ -1,6 +1,7 @@
 import { useSignup } from "./useSignup.jsx";
 import Loading from "../../components/ui/Loading.jsx";
 import { useForm } from "react-hook-form";
+import Input from "../../components/ui/Input.jsx";
 
 const SignupForm = () => {
   const { signup, isLoading } = useSignup();
@@ -28,62 +29,45 @@ const SignupForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {/* Email Field ***************************************************************************/}
-      <div>
-        <label className="block text-lg font-medium text-gray-700 mb-2">
-          Your email address *
-        </label>
-        <input
-          type="email"
-          placeholder="Your Email Address"
-          className={`w-full px-3 py-2 border-b focus:outline-none ${
-            errors.email ? "border-red-500" : "border-accent"
-          }`}
-          {...register("email", {
-            required: "Email is required",
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: "Invalid email address",
-            },
-          })}
-        />
-        {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-        )}
-      </div>
+      {/* Email Field ***********************************************************************/}
 
-      {/* Password Field ****************************************************************************/}
-      <div>
-        <label className="block text-lg font-medium text-gray-700 mb-2">
-          Password *
-        </label>
-        <input
-          type="password"
-          placeholder="Your Password"
-          className={`w-full px-3 py-2 border-b focus:outline-none ${
-            errors.password ? "border-red-500" : "border-accent"
-          }`}
-          {...register("password", {
-            required: "Password is required",
-            minLength: {
-              value: 6,
-              message: "Password must be at least 6 characters",
-            },
-            pattern: {
-              value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-              message: "Password must contain uppercase, lowercase and number",
-            },
-          })}
-        />
-        {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
-        )}
+      <Input
+        label="Email Address"
+        type="email"
+        placeholder="Enter Your Email Address"
+        required
+        {...register("email", {
+          required: "Email is required",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Invalid email address",
+          },
+        })}
+        error={errors.email}
+      />
 
-        {/* Password Strength Indicator */}
-        {watch("password") && !errors.password && (
-          <p className="text-green-500 text-sm mt-1">✓ Strong password</p>
-        )}
-      </div>
+      {/* Password Field ***********************************************************************/}
+      <Input
+        label="password"
+        type="password"
+        placeholder="Enter Your Password"
+        className={`w-full px-3 py-2 border-b focus:outline-none transition-colors ${
+          errors.password ? "border-red-500" : "border-accent"
+        }`}
+        required
+        {...register("password", {
+          required: "Password is required",
+          minLength: {
+            value: 6,
+            message: "Password must be at least 6 characters",
+          },
+        })}
+        error={errors.password}
+      />
+      {/* Password Strength Indicator */}
+      {watch("password") && !errors.password && (
+        <p className="text-green-500 text-sm mt-1">✓ Strong password</p>
+      )}
 
       {/* Privacy Policy Checkbox ****************************************************************************/}
       <div>
