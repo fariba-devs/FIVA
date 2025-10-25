@@ -1,7 +1,7 @@
-import BaseLink from "../../components/ui/BaseLink.jsx";
 import ArrowButton from "../../components/ui/ArrowButton.jsx";
 import ProductCarousel from "./ProductCarousel.jsx";
 import { useRef } from "react";
+import LinkToShop from "../../components/ui/LinkToShop.jsx";
 
 const BestSellingProducts = () => {
   const swiperRef = useRef(null);
@@ -14,7 +14,7 @@ const BestSellingProducts = () => {
         </h2>
         <div className="flex flex-row items-center font-medium space-x-10">
           <div>
-            <BaseLink name="View All Items" />
+            <LinkToShop name="View All Items" />
           </div>
           <div className="flex flex-row space-x-2">
             <ArrowButton

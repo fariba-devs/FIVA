@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
-const BaseLink = ({ name, className }) => {
+const LinkToShop = ({ name, className }) => {
   return (
     <Link
-      to="/singleProduct"
+      to="/shop"
       className={`inline-block ${className} text-lg hover:text-accent transition`}
     >
       <span className="relative underline underline-offset-10 decoration-2">
@@ -13,4 +13,4 @@ const BaseLink = ({ name, className }) => {
   );
 };
 
-export default BaseLink;
+export default LinkToShop;

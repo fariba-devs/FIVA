@@ -1,5 +1,6 @@
-import BaseLink from "../../components/ui/BaseLink.jsx";
+import ButtonLink from "../../components/ui/ButtonLink.jsx";
 import { motion } from "framer-motion";
+import LinkToShop from "../../components/ui/LinkToShop.jsx";
 
 const ProductCard = ({ title, imageUrl, className = "" }) => {
   return (
@@ -22,7 +23,7 @@ const ProductCard = ({ title, imageUrl, className = "" }) => {
         <h2 className="text-6xl md:text-7xl lg:text-7xl font-italiana pb-4">
           {title}
         </h2>
-        <BaseLink name="Shop collection" className="mb-8" />
+        <LinkToShop name="Shop collection" className="mb-8" />
       </div>
     </div>
   );

@@ -1,10 +1,10 @@
-import BaseLink from "../../components/ui/BaseLink.jsx";
+import ButtonLink from "../../components/ui/ButtonLink.jsx";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   return (
     <div className="mr-5 w-full select-none">
-      <div className="relative overflow-hidden cursor-pointer group">
+      <div className="relative overflow-hidden group">
         <img
           src={product.image}
           alt={product.alt}
@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
         />
 
         <div className="absolute inset-0 flex items-end pb-3 justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity">
-          <BaseLink name="Add to Cart" className="pb-5" />
+          <ButtonLink name="Add to Cart" className="pb-5" product={product} />
         </div>
       </div>
       <div className="text-center pt-3 pb-2">

@@ -1,29 +1,39 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
-// داده‌های تستی برای سبد خرید
-const cartItems = [
-  { name: "T-shirt", price: 25, description: "Cotton T-shirt" },
-  { name: "Shoes", price: 45, description: "Running shoes" },
-];
+import useCartStore from "../../store/usecartStore.js";
 
 const CartDrawer = ({ isOpen, onClose }) => {
-  const itemCount = cartItems.length;
-  const totalPrice = cartItems.reduce((sum, item) => sum + item.price, 0);
+  // *****************************************************************دریافت داده‌ها و توابع از Zustand store
+  const cartItems = useCartStore((state) => state.cartItems);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+  const getTotalPrice = useCartStore((state) => state.getTotalPrice);
+  const getTotalItems = useCartStore((state) => state.getTotalItems);
+  const clearCart = useCartStore((state) => state.clearCart);
+
+  const itemCount = getTotalItems();
+  const totalPrice = getTotalPrice();
   const dropdownRef = useRef(null);
-  const navigate = useNavigate(); // 👈 استفاده از هوک ناوبری
+  const navigate = useNavigate();
 
-  // اکشن‌های دکمه‌ها
+  //********************************************************************************************
+  // رفتن به صفحه سبد خرید
   const onViewCart = () => {
-    navigate("/cart"); // 👈 انتقال به صفحه cart
-    onClose(); // 👈 بستن Drawer بعد از رفتن به cart
-  };
-  const onCheckout = () => {
-    navigate("/checkout"); // 👈 انتقال به صفحه checkout
-    onClose(); // 👈 بستن Drawer بعد از رفتن به cart
+    navigate("/cart");
+    onClose();
   };
 
-  // بستن خودکار وقتی بیرون کلیک میشه
+  // رفتن به صفحه پرداخت
+  const onCheckout = () => {
+    navigate("/checkout");
+    onClose();
+  };
+  //********************************************************************************************
+  // حذف محصول از سبد
+  const handleRemoveItem = (productId) => {
+    removeFromCart(productId);
+  };
+
+  // ******************************************************************بستن drawer با کلیک خارج از آن
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -40,40 +50,69 @@ const CartDrawer = ({ isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null; // اگر drawer بسته است، رندر نشود
+  if (!isOpen) return null;
 
+  //********************************************************************************************
   return (
-    <div
+    <section
+      aria-label="CartDrawer"
       ref={dropdownRef}
       className="absolute top-full mt-2 right-0 w-85 bg-white shadow-2xl z-50"
     >
-      {/* Header */}
-      <div className="flex items-center justify-between p-3 bg-white">
+      {/* Header **********************************************************************************/}
+      <div className="flex items-center justify-between p-3 bg-white border-b border-gray-200">
         <h3 className="text-2xl font-italiana text-primary">Your Cart</h3>
-        <div className="w-10 h-10 rounded-full bg-gray-500 text-white flex items-center justify-center text-base font-medium">
-          {itemCount}
+        <div className="flex items-center gap-2">
+          <div className="w-10 h-10 rounded-full bg-gray-500 text-white flex items-center justify-center text-base font-medium">
+            {itemCount}
+          </div>
+          {cartItems.length > 0 && (
+            <button
+              onClick={clearCart}
+              className="text-light-dark hover:text-red-700 text-sm font-medium"
+              aria-label="Clear cart"
+            >
+              Clear All
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Cart Items */}
+      {/* Cart Items **********************************************************************************/}
       <div className="bg-white">
         {cartItems.length === 0 ? (
-          <div className="p-8 text-center text-gray-400">
+          <div className="p-8 text-center text-primary ">
             Your cart is empty
           </div>
         ) : (
           <div>
-            {cartItems.map((item, index) => (
-              <div key={index} className="p-4 ml-3 mr-3 border border-gray-800">
+            {cartItems.map((item) => (
+              <div
+                key={item.id}
+                className="p-4 ml-3 mr-3 border border-gray-800"
+              >
                 <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-lg font-semibold text-gray-900">
-                    {item.name}
-                  </h4>
-                  <span className="text-base text-gray-600 ml-4">
-                    ${item.price}
-                  </span>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-semibold text-gray-900">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Quantity: {item.quantity}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-base text-gray-600">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </span>
+                    <button
+                      onClick={() => handleRemoveItem(item.id)}
+                      className="text-light-dark hover:text-red-700 text-sm font-bold"
+                      aria-label="Remove item"
+                    >
+                      ✕
+                    </button>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-900">{item.description}</p>
               </div>
             ))}
 
@@ -82,18 +121,18 @@ const CartDrawer = ({ isOpen, onClose }) => {
                 TOTAL (USD)
               </span>
               <span className="text-base font-bold text-gray-900">
-                ${totalPrice}
+                ${totalPrice.toFixed(2)}
               </span>
             </div>
           </div>
         )}
       </div>
 
-      {/* Buttons */}
+      {/* Buttons **********************************************************************************/}
       {cartItems.length > 0 && (
-        <div className="p-5 bg-white space-y-3">
+        <div className="p-2 mr-2 bg-white space-y-3">
           <button
-            onClick={onViewCart} // 👈
+            onClick={onViewCart}
             className="w-full bg-gray-900 text-white m-1 py-3.5 text-base font-normal hover:bg-gray-800 transition-colors"
           >
             View Cart
@@ -106,7 +145,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
           </button>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

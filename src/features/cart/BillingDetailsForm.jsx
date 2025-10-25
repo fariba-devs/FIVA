@@ -136,13 +136,13 @@ const BillingDetailsForm = () => {
   return (
     <section
       aria-label="BillingDetailsForm"
-      className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+      className="min-h-screen py-12 px-4 mt-10 sm:px-6 lg:px-8 max-w-6xl mx-auto"
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left side */}
-          <div className="lg:col-span-2 px-8 py-10 space-y-8">
-            <h2 className="text-4xl lg:text-5xl text-gray-900 font-italiana">
+          <div className="shadow-md lg:col-span-2 px-8 py-10 space-y-8">
+            <h2 className="text-4xl lg:text-5xl text-primary font-italiana">
               Billing Details
             </h2>
 
@@ -277,9 +277,9 @@ const BillingDetailsForm = () => {
           </div>
 
           {/* Right side */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 shadow-md">
             <div className="p-6 sticky top-8 space-y-4">
-              <h2 className="text-3xl lg:text-4xl font-italiana text-gray-800">
+              <h2 className="text-primary text-3xl lg:text-4xl font-italiana text-gray-800">
                 Cart Totals
               </h2>
 
