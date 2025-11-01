@@ -3,7 +3,7 @@ import { getTestimonials } from "../../services/apiTestimonials.js";
 
 export function useTestimonials() {
   const {
-    data: testimonials,
+    data: testimonials = [],
     isPending: isLoading,
     error,
   } = useQuery({

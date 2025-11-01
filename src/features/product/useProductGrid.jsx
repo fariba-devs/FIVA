@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { useProducts } from "../bestSellingProducts/useProducts.jsx";
+import { useProducts } from "../../hooks/useProducts.jsx";
 import { useSearchParams } from "react-router-dom";
 import { useSortProducts } from "../filters/useSortProducts.jsx";
 import { useFilterProducts } from "../filters/useFilterProducts.jsx";

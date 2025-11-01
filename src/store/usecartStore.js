@@ -67,6 +67,36 @@ const useCartStore = create(
       getTotalItems: () => {
         return get().cartItems.reduce((sum, item) => sum + item.quantity, 0);
       },
+
+      // افزایش تعداد
+      increaseQuantity: (productId) => {
+        const items = get().cartItems.map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
+        );
+        set({ cartItems: items });
+      },
+
+      // کاهش تعداد
+      decreaseQuantity: (productId) => {
+        const currentItem = get().cartItems.find(
+          (item) => item.id === productId,
+        );
+        if (!currentItem) return;
+
+        if (currentItem.quantity > 1) {
+          const updated = get().cartItems.map((item) =>
+            item.id === productId
+              ? { ...item, quantity: item.quantity - 1 }
+              : item,
+          );
+          set({ cartItems: updated });
+        } else {
+          // اگر صفر شد، حذفش کن
+          get().removeFromCart(productId);
+        }
+      },
     }),
     {
       name: "cart-storage", // نام key در localStorage

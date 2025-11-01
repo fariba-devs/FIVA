@@ -6,7 +6,10 @@ const ButtonLink = ({ name, className, product }) => {
 
   const handleClick = () => {
     addToCart(product);
-    toast.success(`${product.title || "Item"} added to cart!`);
+    toast.success(`${product.title || "Item"} added to cart!`, {
+      duration: 1200,
+      position: "bottom-right",
+    });
   };
 
   return (

@@ -8,49 +8,15 @@ const CartPage = () => {
   //***************************************************************** دریافت داده‌ها و توابع از Zustand store
   const cartItems = useCartStore((state) => state.cartItems);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
-  const updateQuantity = useCartStore((state) => state.updateQuantity);
   const clearCart = useCartStore((state) => state.clearCart);
   const getTotalPrice = useCartStore((state) => state.getTotalPrice);
   const getTotalItems = useCartStore((state) => state.getTotalItems);
+  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
+  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
 
   const totalPrice = getTotalPrice();
   const totalItems = getTotalItems();
 
-  // *****************************************************************افزایش تعداد محصول
-  const handleIncrease = (productId, currentQuantity) => {
-    updateQuantity(productId, currentQuantity + 1);
-  };
-
-  //***************************************************************** کاهش تعداد محصول
-  const handleDecrease = (productId, currentQuantity) => {
-    if (currentQuantity > 1) {
-      updateQuantity(productId, currentQuantity - 1);
-    }
-  };
-
-  //***************************************************************** حذف محصول
-  const handleRemove = (productId) => {
-    if (window.confirm("Are you sure you want to remove this item?")) {
-      removeFromCart(productId);
-    }
-  };
-
-  //***************************************************************** پاک کردن کل سبد
-  const handleClearCart = () => {
-    if (window.confirm("Are you sure you want to clear your entire cart?")) {
-      clearCart();
-    }
-  };
-
-  // رفتن به صفحه پرداخت
-  const handleCheckout = () => {
-    navigate("/checkout");
-  };
-
-  // رفتن به صفحه فروشگاه
-  const handleContinueShopping = () => {
-    navigate("/shop");
-  };
   //**************************************************************************************************
   return (
     <section aria-label="CartPage" className="min-h-screen bg-gray-50 py-8">
@@ -62,7 +28,7 @@ const CartPage = () => {
           </h1>
           {cartItems.length > 0 && (
             <button
-              onClick={handleClearCart}
+              onClick={() => clearCart()}
               className="text-red-500 hover:text-red-700 text-sm font-medium flex items-center gap-2"
             >
               <Trash2 size={18} />
@@ -71,7 +37,7 @@ const CartPage = () => {
           )}
         </div>
 
-        {/* سبد خرید خالی */}
+        {/*   *******************************************************************************سبد خرید خالی */}
         {cartItems.length === 0 ? (
           <div className="bg-white rounded-lg shadow-md p-12 text-center">
             <ShoppingCart size={64} className="mx-auto text-gray-300 mb-4" />
@@ -82,7 +48,7 @@ const CartPage = () => {
               Looks like you haven't added anything to your cart yet.
             </p>
             <button
-              onClick={handleContinueShopping}
+              onClick={() => navigate("/shop")}
               className="bg-primary text-white px-8 py-3 hover:bg-primary/90 transition-colors"
             >
               Continue Shopping
@@ -90,7 +56,7 @@ const CartPage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* لیست محصولات */}
+            {/* *******************************************************************************لیست محصولات   */}
             <div className="lg:col-span-2 space-y-4">
               {cartItems.map((item) => (
                 <div
@@ -122,7 +88,7 @@ const CartPage = () => {
                       {/* دکمه‌های تعداد */}
                       <div className="flex items-center gap-3 border border-gray-300 rounded">
                         <button
-                          onClick={() => handleDecrease(item.id, item.quantity)}
+                          onClick={() => decreaseQuantity(item.id)}
                           className="p-2 hover:bg-gray-100 transition-colors"
                           aria-label="Decrease quantity"
                         >
@@ -132,7 +98,7 @@ const CartPage = () => {
                           {item.quantity}
                         </span>
                         <button
-                          onClick={() => handleIncrease(item.id, item.quantity)}
+                          onClick={() => increaseQuantity(item.id)}
                           className="p-2 hover:bg-gray-100 transition-colors"
                           aria-label="Increase quantity"
                         >
@@ -146,7 +112,7 @@ const CartPage = () => {
                           ${(item.price * item.quantity).toFixed(2)}
                         </span>
                         <button
-                          onClick={() => handleRemove(item.id)}
+                          onClick={() => removeFromCart(item.id)}
                           className="text-red-500 hover:text-red-700 p-2"
                           aria-label="Remove item"
                         >
@@ -159,7 +125,7 @@ const CartPage = () => {
               ))}
             </div>
 
-            {/* خلاصه سبد خرید */}
+            {/* *******************************************************************************خلاصه سبد خرید    */}
             <div className="lg:col-span-1">
               <div className="shadow-md p-6 sticky top-8">
                 <h2 className="text-2xl font-italiana text-primary mb-6">
@@ -184,14 +150,14 @@ const CartPage = () => {
                 </div>
 
                 <button
-                  onClick={handleCheckout}
+                  onClick={() => navigate("/checkout")}
                   className="w-full bg-gray-900 text-white py-4 text-lg font-medium hover:bg-gray-800 transition-colors mb-3"
                 >
                   Proceed to Checkout
                 </button>
 
                 <button
-                  onClick={handleContinueShopping}
+                  onClick={() => navigate("/shop")}
                   className="w-full bg-white text-gray-900 py-4 text-lg font-medium border-2 border-gray-900 hover:bg-gray-50 transition-colors"
                 >
                   Continue Shopping

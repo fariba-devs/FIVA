@@ -1,5 +1,5 @@
 import HeroContent from "../components/heroContent/HeroContent.jsx";
-import ShoppingCart from "../features/cart/ShoppingCart.jsx";
+import ShoppingCart from "../features/cart/CartPage.jsx";
 
 const Cart = () => {
   return (

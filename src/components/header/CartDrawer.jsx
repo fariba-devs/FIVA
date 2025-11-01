@@ -27,10 +27,10 @@ const CartDrawer = ({ isOpen, onClose }) => {
     navigate("/checkout");
     onClose();
   };
-  //********************************************************************************************
-  // حذف محصول از سبد
-  const handleRemoveItem = (productId) => {
-    removeFromCart(productId);
+  // رفتن به صفحه جزئیات محصول
+  const handleProductClick = (productId) => {
+    navigate(`/singleProduct/${productId}`);
+    onClose();
   };
 
   // ******************************************************************بستن drawer با کلیک خارج از آن
@@ -79,7 +79,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
       </div>
 
       {/* Cart Items **********************************************************************************/}
-      <div className="bg-white">
+      <div>
         {cartItems.length === 0 ? (
           <div className="p-8 text-center text-primary ">
             Your cart is empty
@@ -89,29 +89,28 @@ const CartDrawer = ({ isOpen, onClose }) => {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="p-4 ml-3 mr-3 border border-gray-800"
+                onClick={() => handleProductClick(item.id)}
+                className="p-4 ml-3 mr-3 border border-gray-800  flex justify-between items-start mb-0"
               >
-                <div className="flex justify-between items-start mb-2">
-                  <div className="flex-1">
-                    <h4 className="text-lg font-semibold text-gray-900">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-gray-600 mt-1">
-                      Quantity: {item.quantity}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-base text-gray-600">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </span>
-                    <button
-                      onClick={() => handleRemoveItem(item.id)}
-                      className="text-light-dark hover:text-red-700 text-sm font-bold"
-                      aria-label="Remove item"
-                    >
-                      ✕
-                    </button>
-                  </div>
+                <div className="flex-1">
+                  <h4 className="text-lg font-semibold text-gray-900">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm text-gray-600 mt-1">
+                    Quantity: {item.quantity}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-base text-gray-600">
+                    ${(item.price * item.quantity).toFixed(2)}
+                  </span>
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-light-dark hover:text-red-700 text-sm font-bold"
+                    aria-label="Remove item"
+                  >
+                    ✕
+                  </button>
                 </div>
               </div>
             ))}

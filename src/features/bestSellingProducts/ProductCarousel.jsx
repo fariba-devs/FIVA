@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import ProductCard from "./ProductCard.jsx";
-import { useProducts } from "./useProducts.jsx";
+import { useProducts } from "../../hooks/useProducts.jsx";
 import Loading from "../../components/ui/Loading.jsx";
 
 const ProductCarousel = ({ swiperRef }) => {

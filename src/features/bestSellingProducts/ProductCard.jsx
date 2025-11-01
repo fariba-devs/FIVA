@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
       <div className="text-center pt-3 pb-2">
         <h5 className="text-lg md:text-2xl lg:text-3xlg capitalize">
           <Link
-            to="/shop"
+            to={`/singleProduct/${product.id}`}
             className="color-dark hover:text-primary transition-colors text-xl "
           >
             {product.title}
