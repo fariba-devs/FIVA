@@ -17,18 +17,20 @@ const useCartStore = create(
           set({
             cartItems: items.map((item) =>
               item.id === product.id
-                ? { ...item, quantity: item.quantity + 1 }
+                ? { ...item, quantity: item.quantity + (product.quantity || 1) }
                 : item,
             ),
           });
         } else {
           // محصول جدید رو اضافه کن
           set({
-            cartItems: [...items, { ...product, quantity: 1 }],
+            cartItems: [
+              ...items,
+              { ...product, quantity: product.quantity || 1 },
+            ],
           });
         }
       },
-
       // حذف محصول از سبد
       removeFromCart: (productId) => {
         set({
