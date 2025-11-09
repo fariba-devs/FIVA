@@ -7,14 +7,14 @@ const infoData = [
     title: "Office",
     address: "730 Glenstone Ave 65802, Springfield, US",
     phones: ["+123 987 321", "+123 123 654"],
-    email: "vaso@yourinfo.com",
+    email: "fiva@yourinfo.com",
   },
   {
     id: 2,
     title: "USA",
     address: "730 Glenstone Ave 65802, Springfield, US",
     phones: ["+123 987 321", "+123 123 654"],
-    email: "vaso@yourinfo.com",
+    email: "fiva@yourinfo.com",
   },
 ];
 

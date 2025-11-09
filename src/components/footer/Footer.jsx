@@ -13,7 +13,7 @@ const menuItems = [
 const contactInfo = [
   { to: "#", label: "Tea Berry, Marinette, USA" },
   { to: "#", label: "+55 111 222 333 44" },
-  { to: "#", label: "vasoinfo@gmail.com" },
+  { to: "#", label: "fivainfo@gmail.com" },
 ];
 
 const Footer = () => {
@@ -44,7 +44,7 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className="text-light-dark font-light text-lg mt-4 sm:mt-6">
-          &copy; {new Date().getFullYear()} VASO.
+          &copy; {new Date().getFullYear()} FIVA.
           <a
             href="https://github.com/Fariba-shamseh"
             target="_blank"

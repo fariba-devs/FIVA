@@ -35,7 +35,7 @@ const AboutContent = () => {
       <div className="bg-gray-300 w-full min-h-auto p-6 md:w-[650px] md:min-h-[550px] lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-0 lg:mr-20 xl:mr-32 lg:p-12 mt-8 lg:mt-0 z-10">
         <span className="uppercase text-gray-500 mb-6 block">About us</span>
         <h3 className="capitalize mb-8 font-italiana text-4-5xl leading-tight lg:text-5xl">
-          Vaso is the only best online store for varieties of collection of
+          fiva is the only best online store for varieties of collection of
           clean and beautiful vases.
         </h3>
         <p className="text-light-dark leading-relaxed capitalize font-light text-lg">
