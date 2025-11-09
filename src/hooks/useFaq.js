@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getFaqs } from "../../services/apiFaq.js";
+import { getFaqs } from "../services/apiFaq.js";
 
 export function useFaqs() {
   const {

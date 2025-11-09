@@ -3,7 +3,7 @@ import {
   apiCategories,
   apiProductsList,
   apiTags,
-} from "../../services/apiFilters.js";
+} from "../services/apiFilters.js";
 
 export const useCategories = () => {
   return useQuery({

@@ -2,22 +2,12 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import ArrowButton from "../../components/ui/ArrowButton.jsx";
 import TestimonialCard from "./TestimonialCard.jsx";
-import { useTestimonials } from "./useTestimonials.jsx";
+import { useTestimonials } from "../../hooks/useTestimonials.js";
 import Loading from "../../components/ui/Loading.jsx";
 
 const Testimonials = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { testimonials, isLoading } = useTestimonials();
-
-  //تست گرفتن
-  // getTestimonials()
-  //   .then((data) => {
-  //     console.log("Direct call result:", data);
-  //     console.log("Total items:", data?.length);
-  //   })
-  //   .catch((err) => {
-  //     console.error("Direct call error:", err);
-  //   });
 
   const handleNext = () => {
     if (currentSlide < testimonials.length - 1) {

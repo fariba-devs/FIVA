@@ -31,6 +31,7 @@ const useCartStore = create(
           });
         }
       },
+
       // حذف محصول از سبد
       removeFromCart: (productId) => {
         set({

@@ -227,6 +227,7 @@ const BillingDetailsForm = () => {
 
             <Input
               label="ZIP Code"
+              placeholder="12345-6789"
               required
               {...register("zipCode", {
                 required: "ZIP Code is required",

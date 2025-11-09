@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTestimonials } from "../../services/apiTestimonials.js";
+import { getTestimonials } from "../services/apiTestimonials.js";
 
 export function useTestimonials() {
   const {

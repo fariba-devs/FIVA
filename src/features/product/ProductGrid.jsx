@@ -1,9 +1,9 @@
 import React from "react";
-import ProductCard from "../bestSellingProducts/ProductCard.jsx";
+import ProductCard from "../../components/productCard/ProductCard.jsx";
 import Pagination from "./Pagination.jsx";
 import ProductSidebar from "./ProductSidebar.jsx";
 import Loading from "../../components/ui/Loading.jsx";
-import { useProductGrid } from "./useProductGrid.jsx";
+import { useProductGrid } from "../../hooks/useProductGrid.js";
 
 const ProductGrid = () => {
   const {

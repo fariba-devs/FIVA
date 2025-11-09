@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard.jsx";
-import { useProductMasonry } from "./useProductMasonry.jsx";
+import { useProductMasonry } from "../../hooks/useProductMasonry.js";
 import Loading from "../../components/ui/Loading.jsx";
 
 const ProductMasonry = () => {

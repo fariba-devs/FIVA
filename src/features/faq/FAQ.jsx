@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import FAQItem from "./FAQItem.jsx";
-import { useFaqs } from "./useFaq.jsx";
+import { useFaqs } from "../../hooks/useFaq.js";
 import Loading from "../../components/ui/Loading.jsx";
 
 const FAQ = () => {

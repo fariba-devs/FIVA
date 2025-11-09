@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getHero } from "../../services/apiHeroSilder.js";
+import { getHero } from "../services/apiHeroSilder.js";
 
 export function useHeroSlider() {
   const {

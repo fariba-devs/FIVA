@@ -1,4 +1,4 @@
-import { useContactSection } from "./useContactSection.jsx";
+import { useContactSection } from "../../hooks/useContactSection.js";
 import Loading from "../../components/ui/Loading.jsx";
 import { useState } from "react";
 

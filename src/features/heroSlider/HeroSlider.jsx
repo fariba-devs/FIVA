@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useHeroSlider } from "./useHeroSlider.jsx";
+import { useHeroSlider } from "../../hooks/useHeroSlider.js";
 import Loading from "../../components/ui/Loading.jsx";
 import LinkToShop from "../../components/ui/LinkToShop.jsx";
 

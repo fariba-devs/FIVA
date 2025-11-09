@@ -1,5 +1,5 @@
-import { useSignIn } from "./useSignIn.jsx";
-import { useUser } from "./useUser.jsx";
+import { useSignIn } from "../../hooks/useSignIn.js";
+import { useUser } from "../../hooks/useUser.js";
 import Loading from "../../components/ui/Loading.jsx";
 import ProfileSection from "./ProfileSection.jsx";
 import { useForm } from "react-hook-form";

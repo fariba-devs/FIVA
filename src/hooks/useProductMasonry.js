@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProductMasonry } from "../../services/apiProductMasonry.js";
+import { getProductMasonry } from "../services/apiProductMasonry.js";
 
 export function useProductMasonry() {
   const {
-    data: productMasonry,
+    data: productMasonry = [],
     isPending: isLoading,
     error,
   } = useQuery({

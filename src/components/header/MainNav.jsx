@@ -1,16 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../ui/Logo.jsx";
-import NavItem from "./NavItem.jsx";
-import NavItemWithSubmenu from "./NavItemWithSubmenu.jsx";
-import { useUser } from "../../features/auth/useUser.jsx";
-import CartDrawer from "./CartDrawer.jsx";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useUser } from "../../hooks/useUser.js";
+import { DesktopMenu } from "./DesktopMenu.jsx";
+import { MobileMenu } from "./MobileMenu.jsx";
 
 const menuItems = [
   { to: "/about", label: "About" },
   { to: "/shop", label: "Shop" },
   {
-    to: "/pages", // Pages فقط زیرمنو دارد، خودش صفحه ندارد
+    to: "/pages",
     label: "Pages",
     hasSubmenu: true,
     submenuItems: [
@@ -25,16 +23,8 @@ const menuItems = [
 const MainNav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const searchRef = useRef(null);
-  const { isAuthenticated, isLoading } = useUser();
-  const [searchQuery, setSearchQuery] = useState(""); // ⭐ اضافه شد
-
   const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [searchParams] = useSearchParams();
+  const { isAuthenticated, isLoading } = useUser();
 
   const getLabel = (item) => {
     if (item.to === "/account" && !isLoading && isAuthenticated) {
@@ -42,62 +32,16 @@ const MainNav = () => {
     }
     return item.label;
   };
-  // Search ****************************************************************************************
-  // ⭐ تابع برای اعمال سرچ
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      // اگر در صفحه shop هستیم، فقط URL را آپدیت کن
-      if (location.pathname === "/shop") {
-        const params = new URLSearchParams(searchParams);
-        params.set("search", searchQuery.trim());
-        navigate(`/shop?${params.toString()}`);
-      } else {
-        // اگر در صفحه دیگری هستیم، برو به shop با پارامتر سرچ
-        navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
-      }
-      setSearchOpen(false);
-      setSearchQuery("");
-    }
-  };
 
-  // ⭐ سرچ با فشردن Enter
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
-
-  // بستن سرچ وقتی بیرون کلیک میشه
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setSearchOpen(false);
-      }
-    };
-
-    if (searchOpen) {
-      setTimeout(() => {
-        document.addEventListener("click", handleClickOutside);
-      }, 0);
-    }
-
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, [searchOpen]);
-
-  // ****************************************************************************************
-  // Detect scroll position and update navbar state *************************************************
+  // Detect scroll position
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      setIsScrolled(scrollTop > 50);
+      setIsScrolled(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    // پاک کردن event listener وقتی کامپوننت unmount میشه
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  // ****************************************************************************************
 
   return (
     <nav
@@ -105,89 +49,15 @@ const MainNav = () => {
         isScrolled ? "sticky bg-white" : "fixed bg-transparent"
       }`}
     >
-      {/* منوی دسکتاپ */}
-      <div className="hidden lg:flex items-center justify-between h-full px-6 max-w-8xl mx-auto">
-        {/* منوی سمت چپ (About, Shop, Pages) */}
-        <ul className="flex items-center lg:space-x-18 xl:space-x-28 text-dark font-medium text-lg ">
-          {menuItems.slice(0, 2).map((item) => (
-            <NavItem
-              key={item.to}
-              to={item.to}
-              label={item.label}
-              className="flex items-center w-fit justify-center"
-            />
-          ))}
-          {/* آیتم Pages با زیرمنو */}
-          <NavItemWithSubmenu item={menuItems[2]} />
-        </ul>
+      {/* **************************************************************************منوی دسکتاپ */}
+      <DesktopMenu
+        menuItems={menuItems}
+        getLabel={getLabel}
+        isCartOpen={isCartOpen}
+        setIsCartOpen={setIsCartOpen}
+      />
 
-        {/* لوگو در وسط */}
-        <div className="flex-shrink-0 lg:mx-5 xl:mx-10 ">
-          <Logo />
-        </div>
-
-        {/* آیتم‌های سمت راست (Search, Account, Cart) */}
-        <ul className="flex items-center lg:space-x-18 xl:space-x-28 text-dark font-medium text-lg ">
-          <li>
-            {/* باکس سرچ داخل li */} {/* ⭐ باکس سرچ با قابلیت جستجو */}
-            <div className="relative flex items-center w-fit justify-center transition-all duration-200">
-              {searchOpen && (
-                <input
-                  ref={searchRef}
-                  type="text"
-                  placeholder="Search products..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={handleKeyPress}
-                  className="absolute right-full text-md px-1 py-0.5 focus:outline-none transition-all duration-500 border-b border-black w-40"
-                  autoFocus
-                />
-              )}
-              <button
-                type="button"
-                onClick={() => {
-                  if (searchOpen && searchQuery.trim()) {
-                    handleSearch();
-                  } else {
-                    setSearchOpen(true);
-                  }
-                }}
-                className="whitespace-nowrap hover:text-accent transition-colors"
-              >
-                Search
-              </button>
-            </div>
-          </li>
-
-          {menuItems.slice(3).map((item) => (
-            <NavItem
-              key={item.to}
-              to={item.to}
-              label={getLabel(item)}
-              className="flex items-center w-fit justify-center relative"
-              onClick={
-                item.to === "/cart"
-                  ? (e) => {
-                      e.preventDefault(); // جلوگیری از رفتن به صفحه
-                      e.stopPropagation(); // جلوگیری از رسیدن event به document- یعنی روی دکمه زدی دیکه متوقف شو
-                      setIsCartOpen((prev) => !prev); //✅ toggle
-                    }
-                  : undefined //فقط برای cart ✅ برای Account اصلاً onClick نداریم
-              }
-            >
-              {/* فقط برای Cart Drawer */}
-              {item.to === "/cart" && (
-                <CartDrawer
-                  isOpen={isCartOpen}
-                  onClose={() => setIsCartOpen(false)}
-                />
-              )}
-            </NavItem>
-          ))}
-        </ul>
-      </div>
-
-      {/* دکمه منوی موبایل */}
+      {/* *****************************************************************************دکمه منوی موبایل */}
       <div className="lg:hidden absolute w-full px-10 md:px-20 py-5 text-dark font-semibold flex items-center justify-between">
         <Logo />
         <button
@@ -198,65 +68,15 @@ const MainNav = () => {
         </button>
       </div>
 
-      {/* منوی موبایل */}
-      <div
-        className={`fixed flex flex-col top-0 right-0 h-full w-96 bg-white shadow-md lg:hidden transform transition-transform duration-300 ease-in-out z-60 ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {/* دکمه بستن */}
-        <div className="flex justify-end text-accent p-4">
-          <button
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="w-12 h-12 text-2xl font-bold flex items-center justify-center cursor-pointer border-4 border-transparent rounded-lg hover:text-dark active:border-blue-200"
-          >
-            ✕
-          </button>
-        </div>
-
-        <div className="px-4 mb-8">
-          <Logo />
-        </div>
-
-        <ul className="px-4 space-y-6">
-          {menuItems.map((item) =>
-            item.hasSubmenu ? (
-              <NavItemWithSubmenu key={item.to} item={item} mobile={true} />
-            ) : (
-              <NavItem
-                key={item.to}
-                to={item.to}
-                label={getLabel(item)}
-                onClick={
-                  item.to === "/cart"
-                    ? (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setIsCartOpen((prev) => !prev);
-                      }
-                    : undefined
-                }
-              >
-                {/* اضافه کردن CartDrawer */}
-                {item.to === "/cart" && (
-                  <CartDrawer
-                    isOpen={isCartOpen}
-                    onClose={() => setIsCartOpen(false)}
-                  />
-                )}
-              </NavItem>
-            ),
-          )}
-        </ul>
-      </div>
-
-      {/* Overlay برای بستن منوی موبایل */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/50  lg:hidden z-50"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
+      {/* *****************************************************************************منوی موبایل */}
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        menuItems={menuItems}
+        getLabel={getLabel}
+        isCartOpen={isCartOpen}
+        setIsCartOpen={setIsCartOpen}
+      />
     </nav>
   );
 };

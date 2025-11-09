@@ -1,4 +1,4 @@
-import { apiSignOut } from "../../services/apiAuth.js";
+import { apiSignOut } from "../services/apiAuth.js";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 

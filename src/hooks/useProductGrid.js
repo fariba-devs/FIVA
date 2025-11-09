@@ -1,8 +1,8 @@
 import { useState, useMemo, useEffect } from "react";
-import { useProducts } from "../../hooks/useProducts.jsx";
+import { useProducts } from "./useProducts.js";
 import { useSearchParams } from "react-router-dom";
-import { useSortProducts } from "../filters/useSortProducts.jsx";
-import { useFilterProducts } from "../filters/useFilterProducts.jsx";
+import { useSortProducts } from "./useSortProducts.js";
+import { useFilterProducts } from "./useFilterProducts.js";
 
 export const useProductGrid = (productsPerPage = 9) => {
   const { products, isLoading } = useProducts(true);

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiSignIn } from "../../services/apiAuth.js";
+import { apiSignIn } from "../services/apiAuth.js";
 import toast from "react-hot-toast";
 
 export function useSignIn() {

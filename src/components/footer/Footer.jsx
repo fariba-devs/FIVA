@@ -6,14 +6,14 @@ import SocialLinks from "./SocialLinks.jsx";
 const menuItems = [
   { to: "/about", label: "About" },
   { to: "/shop", label: "Shop" },
-  { to: "/pages", label: "Pages" },
+  { to: "/pages/contact", label: "contact" },
   { to: "/account", label: "Account" },
 ];
 
 const contactInfo = [
-  { to: "Tea Berry, Marinette, USA", label: "Tea Berry, Marinette, USA" },
-  { to: "tel:+5511122233344", label: "+55 111 222 333 44" },
-  { to: "mailto:yourinfo@gmail.com", label: "yourinfo@gmail.com" },
+  { to: "#", label: "Tea Berry, Marinette, USA" },
+  { to: "#", label: "+55 111 222 333 44" },
+  { to: "#", label: "vasoinfo@gmail.com" },
 ];
 
 const Footer = () => {

@@ -1,4 +1,4 @@
-import { useSignup } from "./useSignup.jsx";
+import { useSignup } from "../../hooks/useSignup.js";
 import Loading from "../../components/ui/Loading.jsx";
 import { useForm } from "react-hook-form";
 import Input from "../../components/ui/Input.jsx";

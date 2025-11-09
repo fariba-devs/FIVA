@@ -1,6 +1,6 @@
 import { Search } from "lucide-react";
 import SidebarProductSection from "./SidebarProductSection.jsx";
-import { useFilterOptions } from "./useFilterOptions.jsx";
+import { useFilterOptions } from "../../hooks/useFilterOptions.js";
 import React from "react";
 import Loading from "../../components/ui/Loading.jsx";
 

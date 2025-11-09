@@ -1,4 +1,4 @@
-import ButtonLink from "../../components/ui/ButtonLink.jsx";
+import ButtonLink from "../ui/ButtonLink.jsx";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {

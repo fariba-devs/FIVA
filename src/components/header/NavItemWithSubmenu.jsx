@@ -12,16 +12,15 @@ const NavItemWithSubmenu = ({ item, className = "", mobile = false }) => {
 
   // بستن منو وقتی کلیک خارج از آن انجام شود
   useEffect(() => {
+    if (!isOpen) return; // فقط وقتی منو بازه listener فعال باشه
     const handleClickOutside = (event) => {
       if (submenuRef.current && !submenuRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
-
     if (isOpen) {
       document.addEventListener("click", handleClickOutside);
     }
-
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isOpen]);
 
@@ -55,7 +54,7 @@ const NavItemWithSubmenu = ({ item, className = "", mobile = false }) => {
             <Link
               key={subItem.to}
               to={subItem.to}
-              className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors duration-200 ${
+              className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50  transition-colors duration-200 ${
                 mobile ? "text-lg" : ""
               }`}
             >

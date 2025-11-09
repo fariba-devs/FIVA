@@ -1,6 +1,6 @@
-import { useUser } from "./useUser.jsx";
+import { useUser } from "../../hooks/useUser.js";
 import Loading from "../../components/ui/Loading.jsx";
-import { useSignOut } from "./useSignOut.jsx";
+import { useSignOut } from "../../hooks/useSignOut.js";
 
 const ProfileSection = () => {
   const { user } = useUser();
