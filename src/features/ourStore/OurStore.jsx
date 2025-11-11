@@ -34,7 +34,7 @@ const OurStore = () => {
           className="mb-5"
         >
           <img
-            src="/images/post-item3.jpg"
+            src="/images/post-item3.webp"
             alt="our-store"
             className="w-full h-auto"
           />

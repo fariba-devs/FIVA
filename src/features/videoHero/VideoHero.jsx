@@ -39,14 +39,14 @@ const VideoHero = () => {
         {/* لایه Parallax تصویر */}
         <div
           ref={parallaxRef}
-          className="bg-[url('/images/video-image.jpg')] absolute top-0 left-0 w-full h-[678px] bg-center bg-cover pointer-events-none will-change-transform"
+          className="bg-[url('/images/video-image.webp')] absolute top-0 left-0 w-full h-[678px] bg-center bg-cover pointer-events-none will-change-transform"
         ></div>
 
         {/* بخش ویدیو پلیر */}
         <div className="relative z-10 flex items-center justify-center h-full">
           <ArrowButton
             onClick={openModal}
-            backgroundImage="images/text-pattern.png"
+            backgroundImage="images/text-pattern.webp"
             variant="filled"
             iconType="Play"
             className="w-48 h-48 absoluteStrokeWidth"

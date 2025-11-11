@@ -16,7 +16,7 @@ const AboutContent = () => {
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
           <img
-            src="images/single-image3.jpg"
+            src="images/single-image3.webp"
             alt="single"
             className="w-full h-full object-cover"
           />
