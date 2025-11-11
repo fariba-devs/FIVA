@@ -15,7 +15,7 @@ export function MobileMenu({
   return (
     <>
       <div
-        className={`fixed flex flex-col top-0 right-0 h-full w-96 bg-white shadow-md lg:hidden transform transition-transform duration-300 ease-in-out z-60 ${
+        className={`fixed flex flex-col top-0 right-0 h-full w-full bg-white shadow-md lg:hidden transform transition-transform duration-300 ease-in-out z-60 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -33,21 +33,21 @@ export function MobileMenu({
         <ul className="px-4 space-y-6">
           {menuItems.map((item) =>
             item.hasSubmenu ? (
-              <NavItemWithSubmenu key={item.to} item={item} mobile={true} />
+              <NavItemWithSubmenu key={item.to} item={item} mobile={true} onClose={onClose} />
             ) : (
               <NavItem
                 key={item.to}
                 to={item.to}
                 label={getLabel(item)}
-                onClick={
-                  item.to === "/cart"
-                    ? (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setIsCartOpen((prev) => !prev);
-                      }
-                    : undefined
-                }
+                onClick={(e) => {
+                  if (item.to === "/cart") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setIsCartOpen((prev) => !prev);
+                  } else {
+                    onClose(); // 👈 بستن منو بعد از کلیک
+                  }
+                }}
               >
                 {item.to === "/cart" && (
                   <CartDrawer

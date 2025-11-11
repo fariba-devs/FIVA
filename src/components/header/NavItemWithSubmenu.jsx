@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
-const NavItemWithSubmenu = ({ item, className = "", mobile = false }) => {
+const NavItemWithSubmenu = ({ item, className = "", mobile = false,onClose }) => {
   const [isOpen, setIsOpen] = useState(false);
   const submenuRef = useRef(null);
 
@@ -54,6 +54,9 @@ const NavItemWithSubmenu = ({ item, className = "", mobile = false }) => {
             <Link
               key={subItem.to}
               to={subItem.to}
+              onClick={() => {
+                if (onClose) onClose();
+              }}
               className={`block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50  transition-colors duration-200 ${
                 mobile ? "text-lg" : ""
               }`}
