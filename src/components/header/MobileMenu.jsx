@@ -52,7 +52,8 @@ export function MobileMenu({
                 {item.to === "/cart" && (
                   <CartDrawer
                     isOpen={isCartOpen}
-                    onClose={() => setIsCartOpen(false)}
+                    onCloseCart={() => setIsCartOpen(false)}
+                    onClose={onClose}
                   />
                 )}
               </NavItem>
@@ -60,12 +61,6 @@ export function MobileMenu({
           )}
         </ul>
       </div>
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 lg:hidden z-50"
-          onClick={onClose}
-        />
-      )}
     </>
   );
 }

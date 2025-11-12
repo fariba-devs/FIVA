@@ -9,10 +9,10 @@ const BestSellingProducts = () => {
   return (
     <section aria-label="BestSellingProducts" className="select-none">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between max-w-9xl mx-auto px-4 md:px-20 py-5 gap-2">
-        <h2 className="font-italiana font-medium text-4xl md:text-5xl">
+        <h2 className="font-italiana text-4xl md:text-5xl">
           Best selling Items
         </h2>
-        <div className="flex flex-row items-center font-medium space-x-10">
+        <div className="flex flex-row items-center font-medium space-x-20 md:space-x-10">
           <div>
             <LinkToShop name="View All Items" />
           </div>

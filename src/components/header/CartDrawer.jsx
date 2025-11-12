@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useCartStore from "../../store/usecartStore.js";
 
-const CartDrawer = ({ isOpen, onClose }) => {
+const CartDrawer = ({ isOpen, onCloseCart, onClose }) => {
   // *****************************************************************دریافت داده‌ها و توابع از Zustand store
   const cartItems = useCartStore((state) => state.cartItems);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -19,17 +19,21 @@ const CartDrawer = ({ isOpen, onClose }) => {
   // رفتن به صفحه سبد خرید
   const onViewCart = () => {
     navigate("/cart");
+    onCloseCart();
     onClose();
+
   };
 
   // رفتن به صفحه پرداخت
   const onCheckout = () => {
     navigate("/checkout");
+    onCloseCart();
     onClose();
   };
   // رفتن به صفحه جزئیات محصول
   const handleProductClick = (productId) => {
     navigate(`/singleProduct/${productId}`);
+    onCloseCart();
     onClose();
   };
 
@@ -37,7 +41,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        onClose();
+        onCloseCart();
       }
     };
 
@@ -48,7 +52,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onCloseCart]);
 
   if (!isOpen) return null;
 
@@ -57,7 +61,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
     <section
       aria-label="CartDrawer"
       ref={dropdownRef}
-      className="absolute top-full mt-2 right-0 w-85 bg-white shadow-2xl z-50"
+      className="absolute top-full mt-2 right-0 w-85 bg-white shadow-2xl z-50 max-h-[85vh] flex flex-col"
     >
       {/* Header **********************************************************************************/}
       <div className="flex items-center justify-between p-3 bg-white border-b border-gray-200">
@@ -79,12 +83,13 @@ const CartDrawer = ({ isOpen, onClose }) => {
       </div>
 
       {/* Cart Items **********************************************************************************/}
-      <div>
+      <div className="flex-1 overflow-y-auto">
         {cartItems.length === 0 ? (
           <div className="p-8 text-center text-primary ">
             Your cart is empty
           </div>
         ) : (
+
           <div>
             {cartItems.map((item) => (
               <div
@@ -124,6 +129,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
               </span>
             </div>
           </div>
+
         )}
       </div>
 

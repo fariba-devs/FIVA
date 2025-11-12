@@ -44,7 +44,7 @@ const ICON_COLOR = {
 };
 
 const BUTTON_VARIANT = {
-  default: "w-20 h-20 bg-white border border-black hover:bg-black",
+  default: "w-14 h-14 md:w-20 md:h-20 bg-white border border-black hover:bg-black",
   minimal: "p-2 hover:cursor-pointer duration-300", //حالت disable هم داره
   filled: "relative cursor-pointer w-60 h-60",
   chevronupdown: "relative cursor-pointer",

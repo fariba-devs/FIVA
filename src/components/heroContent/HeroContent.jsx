@@ -4,7 +4,12 @@ import BackgroundSection from "../ui/BackgroundSection.jsx";
 const HeroContent = ({ name }) => {
   return (
     <BackgroundSection ariaLabel="HeroContent" className="h-128 pt-55">
-      <h1 className="text-7xl md:text-8xl font-italiana mb-7">{name}</h1>
+      <h1 className={`font-italiana mb-7 
+    ${name === "SingleProduct"
+          ? "text-6xl sm:text-7xl md:text-8xl"  // 👈 کوچیک‌تر در موبایل فقط برای SingleProduct
+          : "text-7xl md:text-8xl"
+      }`}
+      >{name}</h1>
       <div className="text-lg">
         <span className="mr-2">
           <Link
