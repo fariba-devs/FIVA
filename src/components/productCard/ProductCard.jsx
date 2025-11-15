@@ -2,7 +2,8 @@ import ButtonLink from "../ui/ButtonLink.jsx";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
-  return (
+
+    return (
     <div className="mr-5 w-full select-none">
       <div className="relative overflow-hidden group">
         <img

@@ -5,6 +5,7 @@ import ProductSidebar from "./ProductSidebar.jsx";
 import Loading from "../../components/ui/Loading.jsx";
 import { useProductGrid } from "../../hooks/useProductGrid.js";
 import Sort from "./Sort.jsx";
+import EmptyState from "./EmptyProduct.jsx";
 
 
 const ProductGrid = () => {
@@ -35,12 +36,14 @@ const ProductGrid = () => {
       <main className="md:col-span-3">
         {/* Filter and Sort Header */}
         <div className="flex flex-row justify-between items-center mb-4 gap-4">
+          {currentProducts.length > 0 && (
           <div className="text-light-dark font-light text-lg">
             <p>
               Showing {startIndex + 1}-{Math.min(endIndex, products.length)} of{" "}
               {products.length} results
             </p>
           </div>
+          )}
           {/* Sort ******************************************************************/}
           <Sort
               value={sortBy}
@@ -50,9 +53,13 @@ const ProductGrid = () => {
 
         {/* Show currentProducts ***************************************************/}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {currentProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {currentProducts.length === 0 ? (
+              <EmptyState />
+          ) : (
+              currentProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+              ))
+          )}
         </div>
 
         {/* Pagination ******************************************************************/}
