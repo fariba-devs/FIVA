@@ -4,6 +4,8 @@ import Pagination from "./Pagination.jsx";
 import ProductSidebar from "./ProductSidebar.jsx";
 import Loading from "../../components/ui/Loading.jsx";
 import { useProductGrid } from "../../hooks/useProductGrid.js";
+import Sort from "./Sort.jsx";
+
 
 const ProductGrid = () => {
   const {
@@ -40,19 +42,10 @@ const ProductGrid = () => {
             </p>
           </div>
           {/* Sort ******************************************************************/}
-          <div className="w-auto">
-            <select
+          <Sort
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="w-auto text-lg px-4 py-2 appearance-none focus:outline-none"
-            >
-              <option value="">Default sorting</option>
-              <option value="name-asc">Name (A - Z)</option>
-              <option value="name-desc">Name (Z - A)</option>
-              <option value="price-asc">Price (Low-High)</option>
-              <option value="price-desc">Price (High-Low)</option>
-            </select>
-          </div>
+              onChange={setSortBy}
+          />
         </div>
 
         {/* Show currentProducts ***************************************************/}
