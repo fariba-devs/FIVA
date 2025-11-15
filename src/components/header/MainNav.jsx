@@ -3,6 +3,8 @@ import Logo from "../ui/Logo.jsx";
 import { useUser } from "../../hooks/useUser.js";
 import { DesktopMenu } from "./DesktopMenu.jsx";
 import { MobileMenu } from "./MobileMenu.jsx";
+import { User } from "lucide-react";
+
 
 const menuItems = [
   { to: "/about", label: "About" },
@@ -28,8 +30,12 @@ const MainNav = () => {
 
   const getLabel = (item) => {
     if (item.to === "/account" && !isLoading && isAuthenticated) {
-      return "Account ✓";
-    }
+      return (
+          <span className="flex items-center gap-1">
+        Account
+        <User className="w-4 h-4 text-gray-600" />
+      </span>
+      );    }
     return item.label;
   };
 

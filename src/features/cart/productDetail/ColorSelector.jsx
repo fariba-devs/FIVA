@@ -11,7 +11,7 @@ const ColorSelector = ({ colors, selectedColor, onSelect }) => {
           <button
             key={color}
             onClick={() => onSelect(color)}
-            className={`text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 border-2 rounded-lg transition-all font-medium ${
+            className={`text-sm sm:text-base px-4 py-2 sm:px-6 sm:py-3 border-2 transition-all font-medium ${
               selectedColor === color
                 ? "border-gray-900 bg-gray-900 text-white"
                 : "border-gray-300 hover:border-gray-400"

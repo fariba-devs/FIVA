@@ -61,7 +61,7 @@ const CartDrawer = ({ isOpen, onCloseCart, onClose }) => {
     <section
       aria-label="CartDrawer"
       ref={dropdownRef}
-      className="absolute top-full mt-2 right-0 w-85 bg-white shadow-2xl z-50 max-h-[85vh] flex flex-col"
+      className="absolute top-full mt-2 right-0 w-85 bg-white shadow-2xl z-50"
     >
       {/* Header **********************************************************************************/}
       <div className="flex items-center justify-between p-3 bg-white border-b border-gray-200">
@@ -83,7 +83,7 @@ const CartDrawer = ({ isOpen, onCloseCart, onClose }) => {
       </div>
 
       {/* Cart Items **********************************************************************************/}
-      <div className="flex-1 overflow-y-auto">
+      <div className="max-h-[40vh] overflow-y-auto">
         {cartItems.length === 0 ? (
           <div className="p-8 text-center text-primary ">
             Your cart is empty

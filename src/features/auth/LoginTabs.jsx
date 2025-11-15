@@ -1,9 +1,21 @@
 import { useState } from "react";
 import SignInForm from "./SignInForm.jsx";
 import SignupForm from "./SignupForm.jsx";
+import ProfileSection from "./ProfileSection.jsx";
+import {useUser} from "../../hooks/useUser.js";
 
 const LoginTabs = () => {
   const [activeTab, setActiveTab] = useState("signin");
+  const { isAuthenticated } = useUser();
+
+  // اگر کاربر login است، ProfileSection نمایش بده
+  if (isAuthenticated) {
+    return(
+   <section aria-label="Profile" className="py-20 container mx-auto px-10" >
+     <ProfileSection />
+   </section>
+    )
+  }
 
   return (
     <section aria-label="LoginTabs" className="py-20 container mx-auto px-10">

@@ -1,12 +1,8 @@
 import { useSignIn } from "../../hooks/useSignIn.js";
-import { useUser } from "../../hooks/useUser.js";
-import Loading from "../../components/ui/Loading.jsx";
-import ProfileSection from "./ProfileSection.jsx";
 import { useForm } from "react-hook-form";
 import Input from "../../components/ui/Input.jsx";
 
 const SignInForm = () => {
-  const { isAuthenticated } = useUser();
   const { signIn, isLoading } = useSignIn();
 
   const {
@@ -29,10 +25,6 @@ const SignInForm = () => {
 
   // if (isLoading || isPending) return <Loading />;
 
-  // اگر کاربر login است، ProfileSection نمایش بده
-  if (isAuthenticated) {
-    return <ProfileSection />;
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">

@@ -279,7 +279,7 @@ const BillingDetailsForm = () => {
 
           {/* Right side */}
           <div className="lg:col-span-1 shadow-md">
-            <div className="p-6 sticky top-8 space-y-4">
+            <div className="p-6 sticky top-24 space-y-4">
               <h2 className="text-primary text-3xl lg:text-4xl font-italiana text-gray-800">
                 Cart Totals
               </h2>
@@ -321,7 +321,7 @@ const BillingDetailsForm = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gray-900 mt-4 text-white py-3 text-lg font-medium hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full  mt-4 text-white py-3 text-lg font-medium bg-gray-900 hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? "Processing..." : "Place An Order"}
               </button>
