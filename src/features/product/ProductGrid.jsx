@@ -6,6 +6,7 @@ import Loading from "../../components/ui/Loading.jsx";
 import { useProductGrid } from "../../hooks/useProductGrid.js";
 import Sort from "./Sort.jsx";
 import EmptyState from "./EmptyProduct.jsx";
+import ActiveFilters from "./ActiveFilters.jsx";
 
 
 const ProductGrid = () => {
@@ -34,6 +35,12 @@ const ProductGrid = () => {
     >
       {/* Main Content */}
       <main className="md:col-span-3">
+
+        {/* ⭐ Active Filters */}
+        <ActiveFilters
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+        />
         {/* Filter and Sort Header */}
         <div className="flex flex-row justify-between items-center mb-4 gap-4">
           {currentProducts.length > 0 && (
